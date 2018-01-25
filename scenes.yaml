@@ -1,0 +1,51 @@
+- name: Koken
+  entities:
+    light.light_2:
+      state: on
+      brightness: 254
+      color_temp: 250
+    light.light_3:
+      state: on
+      brightness: 254
+      color_temp: 250
+- name: TV
+  entities:
+    light.light_2:
+      state: on
+      brightness: 65
+      color_temp: 400
+    light.light_3:
+      state: on
+      brightness: 65
+      color_temp: 400
+    light.light_1:
+      state: on
+      brightness: 254
+      rgb_color: [255, 206, 118]
+- name: Uit
+  entities:
+    light.light_1:
+      state: off
+    light.light_2:
+      state: off
+    light.light_3:
+      state: off
+    light.light_4:
+      state: off
+- name: AlleenSlaapkamer
+  entities:
+    light.light_1:
+      state: off
+    light.light_2:
+      state: off
+    light.light_3:
+      state: off
+    light.light_4:
+      state: on
+- name: lezen
+  entities:
+    light.light_1:
+      state: on
+      brightness: 254
+      color_temp: 270
+
