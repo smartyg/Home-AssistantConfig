@@ -1,34 +1,35 @@
 onderhoud_cv_systeem:
   alias: Onderhoud CV systeem
+  description: Laat het hele centrale verwarming systeem doorspoelen
   sequence:
     - action: climate.turn_off
-        metadata:
-        data: {}
-        target:
-        device_id:
-          - 7ccf4c319334b14933fcba7b116a0883
-          - 3b47fc92974b2b0724c7e81afa83a9f5
-          - 68d012e979106215d8c017a68947384d
-          - 57847a0906484516497582b697d76c7c
-          - f4fd51f00b045ec113e0f03b643bb451
-          - c15625a23a053ea2eb7111c7e0ae563e
+      metadata:
+      data: {}
+      target:
+      device_id:
+        - 7ccf4c319334b14933fcba7b116a0883
+        - 3b47fc92974b2b0724c7e81afa83a9f5
+        - 68d012e979106215d8c017a68947384d
+        - 57847a0906484516497582b697d76c7c
+        - f4fd51f00b045ec113e0f03b643bb451
+        - c15625a23a053ea2eb7111c7e0ae563e
     - delay:
         hours: 0
         minutes: 1
         seconds: 0
         milliseconds: 0
     - action: input_datetime.set_datetime
-        metadata: {}
-        data:
+      metadata: {}
+      data:
         time: 00:15:00
-        target:
+      target:
         entity_id: input_datetime.cv_tijd_aan
     - action: climate.set_temperature
-        metadata: {}
+      metadata: {}
         data:
         temperature: 35
         hvac_mode: heat
-        target:
+      target:
         device_id: 3b47fc92974b2b0724c7e81afa83a9f5
     - delay:
         hours: 0
@@ -36,11 +37,11 @@ onderhoud_cv_systeem:
         seconds: 0
         milliseconds: 0
     - action: climate.set_temperature
-        metadata: {}
-        data:
+      metadata: {}
+      data:
         temperature: 35
         hvac_mode: heat
-        target:
+      target:
         device_id:
           - f4fd51f00b045ec113e0f03b643bb451
     - delay:
@@ -49,11 +50,11 @@ onderhoud_cv_systeem:
         seconds: 10
         milliseconds: 0
     - action: climate.set_temperature
-        metadata: {}
-        data:
+      metadata: {}
+      data:
         temperature: 35
         hvac_mode: heat
-        target:
+      target:
         device_id:
           - 57847a0906484516497582b697d76c7c
     - delay:
@@ -62,16 +63,16 @@ onderhoud_cv_systeem:
         seconds: 10
         milliseconds: 0
     - action: climate.turn_off
-        metadata: {}
-        data: {}
-        target:
+      metadata: {}
+      data: {}
+      target:
         device_id: 3b47fc92974b2b0724c7e81afa83a9f5
     - action: climate.set_temperature
-        metadata: {}
-        data:
+      metadata: {}
+      data:
         temperature: 35
         hvac_mode: heat
-        target:
+      target:
         device_id:
     - c15625a23a053ea2eb7111c7e0ae563e
     - delay:
@@ -80,9 +81,9 @@ onderhoud_cv_systeem:
         seconds: 5
         milliseconds: 0
     - action: climate.turn_off
-        metadata: {}
-        data: {}
-        target:
+      metadata: {}
+      data: {}
+      target:
         device_id:
           - f4fd51f00b045ec113e0f03b643bb451
     - delay:
@@ -91,11 +92,11 @@ onderhoud_cv_systeem:
         seconds: 5
         milliseconds: 0
     - action: climate.set_temperature
-        metadata: {}
-        data:
+      metadata: {}
+      data:
         temperature: 35
         hvac_mode: heat
-        target:
+      target:
         device_id:
           - 68d012e979106215d8c017a68947384d
     - delay:
@@ -104,9 +105,9 @@ onderhoud_cv_systeem:
         seconds: 5
         milliseconds: 0
     - action: climate.turn_off
-        metadata: {}
-        data: {}
-        target:
+      metadata: {}
+      data: {}
+      target:
         device_id:
           - 57847a0906484516497582b697d76c7c
     - delay:
@@ -115,11 +116,11 @@ onderhoud_cv_systeem:
         seconds: 5
         milliseconds: 0
     - action: climate.set_temperature
-        metadata: {}
-        data:
+      metadata: {}
+      data:
         temperature: 35
         hvac_mode: heat
-        target:
+      target:
         device_id: 7ccf4c319334b14933fcba7b116a0883
     - delay:
         hours: 0
@@ -127,9 +128,9 @@ onderhoud_cv_systeem:
         seconds: 5
         milliseconds: 0
     - action: climate.turn_off
-        metadata: {}
+      metadata: {}
         data: {}
-        target:
+      target:
         device_id:
           - c15625a23a053ea2eb7111c7e0ae563e
     - delay:
@@ -138,9 +139,9 @@ onderhoud_cv_systeem:
         seconds: 10
         milliseconds: 0
     - action: climate.turn_off
-        metadata: {}
-        data: {}
-        target:
+      metadata: {}
+      data: {}
+      target:
         device_id:
           - 68d012e979106215d8c017a68947384d
     - delay:
@@ -149,9 +150,8 @@ onderhoud_cv_systeem:
         seconds: 5
         milliseconds: 0
     - action: climate.turn_off
-        metadata: {}
-        data: {}
-        target:
+      metadata: {}
+      data: {}
+      target:
         device_id:
           - 7ccf4c319334b14933fcba7b116a0883
-    description: Laat het hele centrale verwarming systeem doorspoelen

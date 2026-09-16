@@ -173,8 +173,8 @@ copy:
 
 disable_all:
   name: Disable All
-  description:  Disables all schedules
+  description: Disables all schedules
 
 enable_all:
   name: Enable All
-  description:  Enables all schedules
+  description: Enables all schedules

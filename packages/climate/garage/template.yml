@@ -13,7 +13,7 @@ sensor:
         unknown
       {% endif %}
     availability: >
-      {{ state_attr('climate.radiator_garage', 'current_temperature') is not none 
+      {{ state_attr('climate.radiator_garage', 'current_temperature') is not none
          and has_value('number.radiator_garage_local_temperature_calibration') }}
     icon: mdi:temperature-celsius
   - name: "Waarde cv vraag garage"
@@ -33,6 +33,5 @@ binary_sensor:
   - name: "Garage verzoek verwarming"
     unique_id: garage_verzoek_verwarming
     state: "{{ is_state_attr('climate.radiator_garage', 'hvac_action', 'heating') }}"
-    #availability: true
     availability: >
       {{ state_attr('climate.radiator_garage', 'hvac_action') is not none }}

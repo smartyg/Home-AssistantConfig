@@ -9,19 +9,19 @@
       to: 'on'
   conditions:
     - condition: and
-        conditions:
-          - condition: state
-            entity_id: binary_sensor.beweging_keuken_rechts_occupancy
-            state: 'on'
-          - condition: state
-            entity_id: binary_sensor.beweging_keuken_links_occupancy
-            state: 'on'
-          - condition: state
-            entity_id: input_select.licht_keuken
-            state: uit
-          - condition: state
-            entity_id: sun.sun
-            state: below_horizon
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.beweging_keuken_rechts_occupancy
+          state: 'on'
+        - condition: state
+          entity_id: binary_sensor.beweging_keuken_links_occupancy
+          state: 'on'
+        - condition: state
+          entity_id: input_select.licht_keuken
+          state: uit
+        - condition: state
+          entity_id: sun.sun
+          state: below_horizon
   actions:
     - action: scene.turn_on
       metadata: {}
