@@ -4,8 +4,6 @@ sensor:
     state_class: "measurement"
     device_class: "temperature"
     unit_of_measurement: "°C"
-    #state: "{{ state_attr('climate.radiator_garage', 'current_temperature') - (states('number.radiator_garage_local_temperature_calibration') | float) }}"
-    #availability: true
     state: >
       {% set current = state_attr('climate.radiator_garage', 'current_temperature') %}
       {% set calibration = states('number.radiator_garage_local_temperature_calibration') | float(0) %}
@@ -20,9 +18,6 @@ sensor:
     icon: mdi:temperature-celsius
   - name: "Waarde cv vraag garage"
     unique_id: waarde_cv_vraag_garage
-#    state: "{{ (max((state_attr('climate.radiator_garage', 'temperature') | float) - (states('sensor.garage_gemiddelde_temperatuur') | float), 0) * (states('input_number.cv_factor_garage_radiator') | float)) | round(1) }}"
-#    state: "{% if (is_state('binary_sensor.garage_verzoek_verwarming', 'on')) %}{{ (max((state_attr('climate.radiator_garage', 'temperature') | float) - (states('sensor.garage_gemiddelde_temperatuur') | float), 0) * (states('input_number.cv_factor_garage_radiator') | float)) | round(1) }}{% else %}{{ 0 | float }}{% endif %}"
-#    availability: true
     state: >
       {% if is_state('binary_sensor.garage_verzoek_verwarming', 'on') %}
         {% set target = state_attr('climate.radiator_garage', 'temperature') | float(0) %}

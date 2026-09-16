@@ -3,25 +3,25 @@
   description: Schakel de verlichting in de keuken in als er beweging is.
   triggers:
     - trigger: state
-        entity_id:
+      entity_id:
         - binary_sensor.beweging_keuken_rechts_occupancy
         - binary_sensor.beweging_keuken_links_occupancy
-        to: 'on'
+      to: 'on'
   conditions:
     - condition: and
         conditions:
           - condition: state
-          entity_id: binary_sensor.beweging_keuken_rechts_occupancy
-          state: 'on'
+            entity_id: binary_sensor.beweging_keuken_rechts_occupancy
+            state: 'on'
           - condition: state
-          entity_id: binary_sensor.beweging_keuken_links_occupancy
-          state: 'on'
+            entity_id: binary_sensor.beweging_keuken_links_occupancy
+            state: 'on'
           - condition: state
-          entity_id: input_select.licht_keuken
-          state: uit
+            entity_id: input_select.licht_keuken
+            state: uit
           - condition: state
-          entity_id: sun.sun
-          state: below_horizon
+            entity_id: sun.sun
+            state: below_horizon
   actions:
     - action: scene.turn_on
       metadata: {}
@@ -34,8 +34,8 @@
   triggers:
     - trigger: state
       entity_id:
-      - binary_sensor.beweging_keuken_rechts_occupancy
-      - binary_sensor.beweging_keuken_links_occupancy
+        - binary_sensor.beweging_keuken_rechts_occupancy
+        - binary_sensor.beweging_keuken_links_occupancy
       to: 'off'
       for:
         hours: 0

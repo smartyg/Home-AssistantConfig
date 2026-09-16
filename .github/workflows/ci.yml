@@ -22,7 +22,7 @@ jobs:
       - name: Code ophalen uit repository
         uses: actions/checkout@v4
 
-      # Omdat je secrets.yaml waarschijnlijk in je .gitignore staat, 
+      # Omdat je secrets.yaml waarschijnlijk in je .gitignore staat,
       # moeten we een nep-bestand aanmaken zodat de test niet faalt op missende geheimen.
       - name: Dummy secrets aanmaken
         run: |
@@ -32,5 +32,5 @@ jobs:
       - name: Home Assistant Config Check
         uses: frenck/action-home-assistant@v1
         with:
-          version: "stable" # Je kunt hier ook een specifieke versie invullen, bijv. "2026.3.0"
+          version: "stable"  # Je kunt hier ook een specifieke versie invullen, bijv. "2026.3.0"
 

@@ -1,8 +1,3 @@
 package_opentherm:
   input_number: !include input_number.yml
   automation: !include automation.yml
-#  opentherm_gw: !include opentherm.yml
-#  opentherm_gw:
-#    id: boiler
-#    name: 'Boiler'
-#    url: 'socket://10.0.2.2:23'

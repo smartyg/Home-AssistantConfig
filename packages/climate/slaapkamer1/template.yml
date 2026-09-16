@@ -9,8 +9,6 @@ sensor:
     icon: mdi:temperature-celsius
   - name: "Waarde cv vraag slaapkamer 1"
     unique_id: waarde_cv_vraag_slaapkamer_1
-    #state: "{{ (max((state_attr('climate.radiator_slaapkamer', 'temperature') | float) - (states('sensor.slaapkamer1_gemiddelde_temperatuur') | float), 0)) * (states('input_number.cv_factor_slaapkamer1') | float) | round(1) }}"
-    #state: "{{ (max((state_attr('climate.radiator_slaapkamer', 'temperature') | float) - (states('sensor.slaapkamer1_gemiddelde_temperatuur') | float), 0) * (states('input_number.cv_factor_slaapkamer1_radiator') | float)) | round(1) }}"
     state: "{% if (is_state('binary_sensor.slaapkamer1_verzoek_verwarming', 'on')) %}{{ (max((state_attr('climate.radiator_slaapkamer', 'temperature') | float) - (states('sensor.slaapkamer1_gemiddelde_temperatuur') | float), 0) * (states('input_number.cv_factor_slaapkamer1_radiator') | float)) | round(1) }}{% else %}{{ 0 | float }}{% endif %}"
     availability: true
 binary_sensor:
