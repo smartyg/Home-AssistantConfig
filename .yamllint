@@ -19,8 +19,11 @@ rules:
     level: warning
   comments-indentation: disable
 
-  # 5. Soms genereert de HA-interface (UI) lege regels aan het eind van bestanden
+  # 5. Geen harde fouten op onnodige spaties aan het lijneinde
   trailing-spaces:
     level: warning
-    empty-lines: true
 
+  # 6. Sta extra lege regels toe (handig bij UI-gegenereerde code)
+  empty-lines:
+    max: 5          # Standaard is 2, verhoog dit naar wens
+    max-end: 2      # Aantal toegestane lege regels aan het eind van het bestand
