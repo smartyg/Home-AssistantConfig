@@ -9,7 +9,6 @@ sensor:
     icon: mdi:temperature-celsius
   - name: "Waarde cv vraag zolder"
     unique_id: waarde_cv_vraag_zolder
-    #state: "{{ (max((state_attr('climate.radiator_zolder', 'temperature') | float) - (states('sensor.zolder_gemiddelde_temperatuur') | float), 0) * (states('input_number.cv_factor_zolder_radiator') | float)) | round(1) }}"
     state: "{% if (is_state('binary_sensor.zolder_verzoek_verwarming', 'on')) %}{{ (max((state_attr('climate.radiator_zolder', 'temperature') | float) - (states('sensor.zolder_gemiddelde_temperatuur') | float), 0) * (states('input_number.cv_factor_zolder_radiator') | float)) | round(1) }}{% else %}{{ 0 | float }}{% endif %}"
     availability: true
 binary_sensor:

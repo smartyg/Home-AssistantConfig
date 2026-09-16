@@ -1,6 +1,0 @@
-#device: test
-#path: socket://10.0.44.4:1501
-#socket://10.0.44.4:1501
-#  id: boiler
-#  name: "Boiler"
-#  url: socket://10.0.44.4:1501

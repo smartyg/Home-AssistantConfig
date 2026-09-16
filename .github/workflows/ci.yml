@@ -1,0 +1,36 @@
+name: Home Assistant CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code ophalen
+        uses: actions/checkout@v4
+
+      - name: YAML Linting
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: "."
+          # Je kunt eventueel een .yamllint bestand toevoegen om regels te versoepelen
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code ophalen uit repository
+        uses: actions/checkout@v4
+
+      # Omdat je secrets.yaml waarschijnlijk in je .gitignore staat,
+      # moeten we een nep-bestand aanmaken zodat de test niet faalt op missende geheimen.
+      - name: Dummy secrets aanmaken
+        run: |
+          echo "home_latitude: 52.37" >> secrets.yaml
+          echo "home_longitude: 4.89" >> secrets.yaml
+
+      - name: Home Assistant Config Check
+        uses: frenck/action-home-assistant@v1
+        with:
+          version: "stable"  # Je kunt hier ook een specifieke versie invullen, bijv. "2026.3.0"
+

@@ -3,7 +3,7 @@ resources:
   - url: /local/numberbox-card.js?v=1
     type: module
 dashboards:
-  lovelace-generate: # Needs to contain a hyphen (-)
+  lovelace-generate:  # Needs to contain a hyphen (-)
     mode: yaml
     filename: dashboards/keuken.yaml
     title: Keuken

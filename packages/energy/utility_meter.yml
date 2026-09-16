@@ -26,7 +26,7 @@ dagelijks_energie:
 dagelijks_gas:
   source: sensor.gas_consumed
   name: Dagelijks gas verbruik
-  unique_id: dagelijks_gas_verbruik 
+  unique_id: dagelijks_gas_verbruik
   cycle: daily
   always_available: true
 dagelijks_water:
@@ -50,7 +50,7 @@ maandelijks_gas:
   always_available: true
 maandelijks_water:
   source: sensor.water_total
-  name: Maandelijks water verbruik 
+  name: Maandelijks water verbruik
   unique_id: maandelijks_water_verbruik
   cycle: monthly
   always_available: true

@@ -7,7 +7,7 @@
     - id: schakelaar_eetkamer
       platform: device
       domain: mqtt
-      device_id: 31ffa69013f58a355aaa7d38b879a5c5 # Schakelaar Eetkamer
+      device_id: 31ffa69013f58a355aaa7d38b879a5c5  # Schakelaar Eetkamer
       type: action
       subtype: toggle
   condition:
@@ -28,7 +28,7 @@
     - id: schakelaar_eetkamer
       platform: device
       domain: mqtt
-      device_id: 31ffa69013f58a355aaa7d38b879a5c5 # Schakelaar Eetkamer
+      device_id: 31ffa69013f58a355aaa7d38b879a5c5  # Schakelaar Eetkamer
       type: action
       subtype: toggle
   condition:

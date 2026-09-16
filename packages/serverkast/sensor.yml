@@ -5,7 +5,7 @@
   round_digits: 0
   entity_ids:
     - sensor.serverkast_boven_power
-    - sensor.serverkast_onder_power 
+    - sensor.serverkast_onder_power
 - platform: min_max
   unique_id: 'serverkast_totale_stroomsterkte'
   name: 'Serverkast totale stroomsterkte'

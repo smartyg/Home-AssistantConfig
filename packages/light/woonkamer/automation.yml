@@ -7,7 +7,7 @@
     - id: schakelaar_woonkamer
       platform: device
       domain: mqtt
-      device_id: a2a05b4122ed28c46b2edb2753a6c08d # Schakelaar Woonkamer
+      device_id: a2a05b4122ed28c46b2edb2753a6c08d  # Schakelaar Woonkamer
       type: action
       subtype: toggle
   condition:
@@ -28,7 +28,7 @@
     - id: schakelaar_woonkamer
       platform: device
       domain: mqtt
-      device_id: a2a05b4122ed28c46b2edb2753a6c08d # Schakelaar Woonkamer
+      device_id: a2a05b4122ed28c46b2edb2753a6c08d  # Schakelaar Woonkamer
       type: action
       subtype: toggle
   condition:
