@@ -14,17 +14,17 @@
     light.licht_woonkamer_3:
       brightness: 77
       color_mode: color_temp
-      color_temp: 427
+      color_temp_kelvin: 2342
       state: 'on'
     light.licht_woonkamer_4: 'off'
     light.licht_woonkamer_5: 'off'
     light.licht_woonkamer_6:
       brightness: 102
       color_mode: color_temp
-      color_temp: 408
+      color_temp_kelvin: 2451
       state: 'on'
     light.licht_woonkamer_7:
       brightness: 77
       color_mode: color_temp
-      color_temp: 427
+      color_temp_kelvin: 2342
       state: 'on'

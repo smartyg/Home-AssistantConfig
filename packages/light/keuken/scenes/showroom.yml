@@ -12,57 +12,57 @@
     light.licht_keuken_1a:
       brightness: 255
       color_mode: color_temp
-      color_temp: 453
+      color_temp_kelvin: 2208
       state: 'on'
     light.licht_keuken_1b:
       brightness: 255
       color_mode: color_temp
-      color_temp: 453
+      color_temp_kelvin: 2208
       state: 'on'
     light.licht_keuken_1c:
       brightness: 255
       color_mode: color_temp
-      color_temp: 453
+      color_temp_kelvin: 2208
       state: 'on'
     light.licht_keuken_1d:
       brightness: 255
       color_mode: color_temp
-      color_temp: 453
+      color_temp_kelvin: 2208
       state: 'on'
     light.licht_keuken_2a:
       brightness: 255
       color_mode: color_temp
-      color_temp: 520
+      color_temp_kelvin: 1923
       state: 'on'
     light.licht_keuken_2c:
       brightness: 255
       color_mode: color_temp
-      color_temp: 520
+      color_temp_kelvin: 1923
       state: 'on'
     light.licht_keuken_2d:
       brightness: 255
       color_mode: color_temp
-      color_temp: 453
+      color_temp_kelvin: 2208
       state: 'on'
     light.licht_keuken_3a:
       brightness: 255
       color_mode: color_temp
-      color_temp: 453
+      color_temp_kelvin: 2208
       state: 'on'
     light.licht_keuken_3b:
       brightness: 255
       color_mode: color_temp
-      color_temp: 453
+      color_temp_kelvin: 2208
       state: 'on'
     light.licht_keuken_3c:
       brightness: 255
       color_mode: color_temp
-      color_temp: 453
+      color_temp_kelvin: 2208
       state: 'on'
     light.licht_keuken_3d:
       brightness: 255
       color_mode: color_temp
-      color_temp: 453
+      color_temp_kelvin: 2208
       state: 'on'
     light.licht_keuken_onder_eiland:
       brightness: 192

@@ -12,57 +12,57 @@
     light.licht_keuken_1a:
       brightness: 192
       color_mode: color_temp
-      color_temp: 427
+      color_temp_kelvin: 2342
       state: 'on'
     light.licht_keuken_1b:
       brightness: 192
       color_mode: color_temp
-      color_temp: 427
+      color_temp_kelvin: 2342
       state: 'on'
     light.licht_keuken_1c:
       brightness: 192
       color_mode: color_temp
-      color_temp: 427
+      color_temp_kelvin: 2342
       state: 'on'
     light.licht_keuken_1d:
       brightness: 192
       color_mode: color_temp
-      color_temp: 427
+      color_temp_kelvin: 2342
       state: 'on'
     light.licht_keuken_2a:
       brightness: 255
       color_mode: color_temp
-      color_temp: 408
+      color_temp_kelvin: 2451
       state: 'on'
     light.licht_keuken_2c:
       brightness: 255
       color_mode: color_temp
-      color_temp: 408
+      color_temp_kelvin: 2451
       state: 'on'
     light.licht_keuken_2d:
       brightness: 192
       color_mode: color_temp
-      color_temp: 427
+      color_temp_kelvin: 2342
       state: 'on'
     light.licht_keuken_3a:
       brightness: 192
       color_mode: color_temp
-      color_temp: 427
+      color_temp_kelvin: 2342
       state: 'on'
     light.licht_keuken_3b:
       brightness: 192
       color_mode: color_temp
-      color_temp: 427
+      color_temp_kelvin: 2342
       state: 'on'
     light.licht_keuken_3c:
       brightness: 192
       color_mode: color_temp
-      color_temp: 427
+      color_temp_kelvin: 2342
       state: 'on'
     light.licht_keuken_3d:
       brightness: 192
       color_mode: color_temp
-      color_temp: 427
+      color_temp_kelvin: 2342
       state: 'on'
     light.licht_keuken_onder_aanrecht: 'off'
     light.licht_keuken_boven_aanrecht: 'off'

@@ -15,7 +15,7 @@
     light.licht_keuken_1d:
       brightness: 1
       color_mode: color_temp
-      color_temp: 436
+      color_temp_kelvin: 2294
       state: 'on'
     light.licht_keuken_2a:
       brightness: 25
@@ -39,7 +39,7 @@
     light.licht_keuken_3d:
       brightness: 1
       color_mode: color_temp
-      color_temp: 436
+      color_temp_kelvin: 2294
       state: 'on'
     light.licht_keuken_onder_eiland:
       brightness: 1

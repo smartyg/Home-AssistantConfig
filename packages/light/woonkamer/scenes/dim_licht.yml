@@ -12,35 +12,35 @@
     light.licht_woonkamer_1:
       brightness: 192
       color_mode: color_temp
-      color_temp: 427
+      color_temp_kelvin: 2342
       state: 'on'
     light.licht_woonkamer_2:
       brightness: 192
       color_mode: color_temp
-      color_temp: 427
+      color_temp_kelvin: 2342
       state: 'on'
     light.licht_woonkamer_3:
       brightness: 192
       color_mode: color_temp
-      color_temp: 427
+      color_temp_kelvin: 2342
       state: 'on'
     light.licht_woonkamer_4:
       brightness: 192
       color_mode: color_temp
-      color_temp: 427
+      color_temp_kelvin: 2342
       state: 'on'
     light.licht_woonkamer_5:
       brightness: 255
       color_mode: color_temp
-      color_temp: 408
+      color_temp_kelvin: 2451
       state: 'on'
     light.licht_woonkamer_6:
       brightness: 255
       color_mode: color_temp
-      color_temp: 408
+      color_temp_kelvin: 2451
       state: 'on'
     light.licht_woonkamer_7:
       brightness: 192
       color_mode: color_temp
-      color_temp: 427
+      color_temp_kelvin: 2342
       state: 'on'
