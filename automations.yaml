@@ -73,19 +73,19 @@
   triggers:
     - trigger: state
       entity_id:
-      - binary_sensor.beweging_hal_trap_occupancy
-      - binary_sensor.beweging_trap_occupancy
+        - binary_sensor.beweging_hal_trap_occupancy
+        - binary_sensor.beweging_trap_occupancy
       to: 'on'
   conditions:
     - condition: and
       conditions:
-      - condition: state
-        entity_id: input_select.licht_keuken
-        state: uit
-      - condition: numeric_state
-        entity_id: sun.sun
-        attribute: elevation
-        below: 5
+        - condition: state
+            entity_id: input_select.licht_keuken
+            state: uit
+        - condition: numeric_state
+            entity_id: sun.sun
+            attribute: elevation
+            below: 5
   actions:
     - action: scene.turn_on
       metadata: {}

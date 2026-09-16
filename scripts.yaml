@@ -26,7 +26,7 @@ onderhoud_cv_systeem:
         entity_id: input_datetime.cv_tijd_aan
     - action: climate.set_temperature
       metadata: {}
-        data:
+      data:
         temperature: 35
         hvac_mode: heat
       target:
@@ -129,7 +129,7 @@ onderhoud_cv_systeem:
         milliseconds: 0
     - action: climate.turn_off
       metadata: {}
-        data: {}
+      data: {}
       target:
         device_id:
           - c15625a23a053ea2eb7111c7e0ae563e
