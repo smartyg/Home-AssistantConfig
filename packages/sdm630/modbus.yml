@@ -1,0 +1,8 @@
+# SDM630 PowerMeter
+- name: eastron
+  type: 'rtuovertcp'
+  host: 10.0.0.250
+  port: 4196
+  timeout: 15
+  delay: 2
+  sensors: !include sdm630_addresses.yml

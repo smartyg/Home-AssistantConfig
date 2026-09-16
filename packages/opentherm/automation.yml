@@ -1,0 +1,92 @@
+- id: boiler_set_cv_water_temperatuur
+  alias: "Stel de temperatuur van het CV water in"
+  description: "Stel de maximale temperatuur van het teruggaande CV water van de boiler in."
+  initial_state: true
+  mode: restart
+  trigger:
+    - id: change_cv_water_temperature
+      platform: state
+      entity_id:
+        - input_number.boiler_cv_water_temperatuur
+        - sensor.opentherm_boiler_control_setpoint_1
+      from: null
+  condition:
+    - alias: "Als de waardes niet overeen komen, set de waarde (opnieuw) in."
+      condition: not
+      conditions:
+        - condition: state
+          entity_id: sensor.opentherm_boiler_control_setpoint_1
+          state: input_number.boiler_cv_water_temperatuur
+  action:
+    - action: opentherm_gw.set_control_setpoint
+      data:
+        gateway_id: otgw
+        temperature: "{{ states('input_number.boiler_cv_water_temperatuur') | float }}"
+
+
+- id: boiler_set_warm_water_temperatuur
+  alias: "Stel de temperatuur van het warm water in"
+  description: "Stel de maximale temperatuur van het warm water van de boiler in."
+  initial_state: true
+  mode: restart
+  trigger:
+    - id: change_warm_water_temperature
+      platform: state
+      entity_id:
+        - input_number.boiler_warm_water_temperatuur
+      from: null
+  action:
+    - action: opentherm_gw.set_hot_water_setpoint
+      data:
+        gateway_id: otgw
+        temperature: "{{ states('input_number.boiler_warm_water_temperatuur') | float }}"
+
+- id: boiler_set_maximale_modulatie
+  alias: "Stel de maximale modulatie van de boiler in"
+  description: "Stel de maximale modulatie van de boiler in."
+  initial_state: true
+  mode: restart
+  trigger:
+    - id: change_cv_water_temperature
+      platform: state
+      entity_id:
+        - input_number.boiler_maximum_modulatie_level
+        - sensor.opentherm_boiler_control_setpoint_1
+      from: null
+  condition:
+    - alias: "Als de waardes niet overeen komen, set de waarde (opnieuw) in."
+      condition: not
+      conditions:
+        - condition: state
+          entity_id: sensor.opentherm_boiler_control_setpoint_1
+          state: input_number.boiler_maximum_modulatie_level
+  action:
+    - action: opentherm_gw.set_max_modulation
+      data:
+        gateway_id: otgw
+        level: "{{ states('input_number.boiler_maximum_modulatie_level') | float }}"
+
+- id: boiler_zet_aan
+  alias: "Zet de boiler aan"
+  description: "Zet de boiler aan."
+  initial_state: true
+  mode: restart
+  trigger:
+    - id: change_boiler_state
+      platform: state
+      entity_id:
+        - binary_sensor.de_cv_wordt_gevraagd_aan_te_slaan
+        - switch.opentherm_gateway_force_central_heating_1_on
+      from: null
+  condition:
+    - alias: "Als de waardes niet overeen komen, set de waarde (opnieuw) in."
+      condition: not
+      conditions:
+        - condition: state
+          entity_id: switch.opentherm_gateway_force_central_heating_1_on
+          state: binary_sensor.de_cv_wordt_gevraagd_aan_te_slaan
+  action:
+    - action: opentherm_gw.set_central_heating_ovrd
+      data:
+        gateway_id: otgw
+        ch_override: "{{ states('binary_sensor.de_cv_wordt_gevraagd_aan_te_slaan') }}"

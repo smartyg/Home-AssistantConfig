@@ -1,7 +1,24 @@
-*
-!*.yaml
-!scenes
-!.gitignore
+# Blokkeer de database en back-ups
+*.db
+*.db-shm
+*.db-wal
+backups/
+
+# Blokkeer logbestanden
+*.log
+*.log.*
+
+# Blokkeer Home Assistant interne systeembestanden en caches
+.storage/
+__pycache__/
+*.json
+
+# Belangrijk: Blokkeer je geheime inloggegevens en wachtwoorden!
 secrets.yaml
 known_devices.yaml
+
+.HA_VERSION
+.cache/
+*.lock
+
 !LICENSE

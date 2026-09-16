@@ -1,0 +1,8 @@
+- platform: min_max
+  unique_id: trap_gemiddelde_lichtsterkte
+  name: 'Trap gemiddelde lichtsterkte'
+  type: mean
+  round_digits: 0
+  entity_ids:
+    - sensor.beweging_hal_trap_illuminance
+    - sensor.beweging_trap_illuminance

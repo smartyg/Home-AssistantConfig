@@ -1,0 +1,12 @@
+- id: 'scene_woonkamer_uit'
+  name: Licht uit woonkamer
+  icon: mdi:lightbulb-off
+  entities:
+    input_select.licht_woonkamer: uit
+    light.licht_woonkamer_1: 'off'
+    light.licht_woonkamer_2: 'off'
+    light.licht_woonkamer_3: 'off'
+    light.licht_woonkamer_4: 'off'
+    light.licht_woonkamer_5: 'off'
+    light.licht_woonkamer_6: 'off'
+    light.licht_woonkamer_7: 'off'

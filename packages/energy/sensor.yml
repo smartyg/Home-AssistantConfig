@@ -1,0 +1,89 @@
+- platform: filter
+  unique_id: totaal_energie_verbruik_sample
+  name: 'Totaal energie verbruik sample (1 per minuut)'
+  entity_id: sensor.totale_energie_verbruik_tarief_1_2
+  filters:
+    - filter: time_throttle
+      window_size: "00:01"
+      precision: 2
+
+- platform: statistics
+  unique_id: energie_verbruik_laatste_24_uur
+  name: "Energie verbruik laatste 24 uur"
+  entity_id: sensor.totaal_energie_verbruik_sample_1_per_minuut
+  state_characteristic: change
+  max_age:
+    hours: 24
+  sampling_size: 1600
+  keep_last_sample: true
+  precision: 1
+- platform: statistics
+  unique_id: energie_verbruik_laatste_30_dagen
+  name: "Energie verbruik laatste 30 dagen"
+  entity_id: sensor.totaal_energie_verbruik_sample_1_per_minuut
+  state_characteristic: change
+  max_age:
+    days: 30
+  sampling_size: 48000
+  keep_last_sample: true
+  precision: 1
+
+- platform: filter
+  unique_id: totaal_gas_verbruik_sample
+  name: 'Totaal gas verbruik sample (5 per minuut)'
+  entity_id: sensor.gas_consumed
+  filters:
+    - filter: time_throttle
+      window_size: "00:05"
+      precision: 2
+
+- platform: statistics
+  unique_id: gas_verbruik_laatste_24_uur
+  name: "Gas verbruik laatste 24 uur"
+  entity_id: sensor.totaal_gas_verbruik_sample_5_per_minuut
+  state_characteristic: change
+  max_age:
+    hours: 24
+  sampling_size: 320
+  keep_last_sample: true
+  precision: 1
+- platform: statistics
+  unique_id: gas_verbruik_laatste_30_dagen
+  name: "Gas verbruik laatste 30 dagen"
+  entity_id: sensor.totaal_gas_verbruik_sample_5_per_minuut
+  state_characteristic: change
+  max_age:
+    days: 30
+  sampling_size: 9500
+  keep_last_sample: true
+  precision: 1
+
+- platform: filter
+  unique_id: totaal_water_verbruik_sample
+  name: 'Totaal water verbruik sample (5 per minuut)'
+  entity_id: sensor.water_total
+  filters:
+    - filter: time_throttle
+      window_size: "00:05"
+      precision: 0
+
+- platform: statistics
+  unique_id: water_verbruik_laatste_24_uur
+  name: "Water verbruik laatste 24 uur"
+  entity_id: sensor.totaal_water_verbruik_sample_5_per_minuut
+  state_characteristic: change
+  max_age:
+    hours: 24
+  sampling_size: 320
+  keep_last_sample: true
+  precision: 0
+- platform: statistics
+  unique_id: water_verbruik_laatste_30_dagen
+  name: "Water verbruik laatste 30 dagen"
+  entity_id: sensor.totaal_water_verbruik_sample_5_per_minuut
+  state_characteristic: change
+  max_age:
+    days: 30
+  sampling_size: 9500
+  keep_last_sample: true
+  precision: 0

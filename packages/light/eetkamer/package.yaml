@@ -1,0 +1,7 @@
+package_light_eetkamer:
+  automation: !include automation.yml
+  input_select: !include input_select.yml
+  scene lichten_eetkamer_dim_licht: !include scenes/dim_licht.yml
+  scene lichten_eetkamer_nacht_licht: !include scenes/nacht_licht.yml
+  scene lichten_eetkamer_uit: !include scenes/uit.yml
+  scene lichten_eetkamer_vol_licht: !include scenes/vol_licht.yml

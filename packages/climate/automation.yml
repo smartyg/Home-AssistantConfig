@@ -1,0 +1,54 @@
+- id: 'aftellen van de cv timer'
+  alias: 'Per minuut aftellen van de handmatige cv timer'
+  initial_state: 'on'
+  triggers:
+    - platform: time_pattern
+      seconds: 0
+      minutes: '*'
+  conditions:
+    - alias: 'alleen als de timer ingesteld is'
+      condition: template
+      value_template: "{{ state_attr('input_datetime.cv_tijd_aan', 'timestamp') > 0 }}"
+  actions:
+    - service: input_datetime.set_datetime
+      target:
+        entity_id: input_datetime.cv_tijd_aan
+      data:
+        timestamp: >-
+          {% if state_attr('input_datetime.cv_tijd_aan', 'timestamp') <= 60 %}-3600{% else
+          %}{{ state_attr('input_datetime.cv_tijd_aan', 'timestamp') - 60 - 3600 }}{% endif %}
+- id: 'boiler_temperatuur_correctie'
+  alias: "Boiler temperatuur aanpassen aan gevoelstemperatuur"
+  description: "Pas de boiler temperatuur aan, aan de gevoelstemperatuur"
+  initial_state: 'on'
+  mode: single
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.de_cv_wordt_gevraagd_aan_te_slaan
+      to: "on"
+  actions:
+    - action: input_number.set_value
+      data:
+        value: "{{ max(min(40 - (states('sensor.knmi_gevoelstemperatuur') | float / 2), 50), 35) }}"
+      target:
+        entity_id: input_number.boiler_cv_water_temperatuur
+- id: 'Vloerverwarming aan'
+  alias: Vloerverwarming
+  description: Zet de vloerverwarming aan als de temperatuur onder de 18 graden komt
+  triggers:
+    - trigger: time_pattern
+      hours: '*'
+      seconds: "1"
+  conditions:
+    - condition: numeric_state
+      entity_id: sensor.woonkamer_temperatuur
+      below: 19.0
+  actions:
+    - action: input_datetime.set_datetime
+      metadata: {}
+      data:
+        time: "00:15:00"
+      target:
+        entity_id: input_datetime.cv_tijd_aan
+  mode: single

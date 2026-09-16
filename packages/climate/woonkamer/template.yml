@@ -1,0 +1,35 @@
+sensor:
+  - name: "Woonkamer gemeten temperatuur"
+    unique_id: woonkamer_gemeten_temperatuur
+    state_class: "measurement"
+    device_class: "temperature"
+    unit_of_measurement: "°C"
+    state: "{{ state_attr('climate.radiator_woonkamer', 'current_temperature') - (states('number.radiator_woonkamer_local_temperature_calibration') | float) }}"
+    availability: true
+    icon: mdi:temperature-celsius
+#  - name: "Waarde cv vraag woonkamer radiator"
+#    unique_id: waarde_cv_vraag_woonkamer_radiator
+#    state: "{{ (max((state_attr('climate.radiator_woonkamer', 'temperature') | float) - (states('sensor.woonkamer_gemiddelde_temperatuur') | float), 0)) * (states('input_number.cv_factor_woonkamer_radiator') | float) | round(1) }}"
+#    state: 0.0
+#    availability: true
+  - name: "Waarde cv vraag woonkamer"
+    unique_id: waarde_cv_vraag_woonkamer
+    state: "{{ (max((states('input_number.setpoint_temperatuur_woonkamer') | float) - (states('sensor.woonkamer_gemiddelde_temperatuur') | float), 0) * (states('input_number.cv_factor_woonkamer_radiator') | float)) | round(1) }}"
+    availability: true
+  - name: "Waarde cv vraag woonkamer vloerverwarming"
+    unique_id: waarde_cv_vraag_woonkamer_vloerverwarming
+#    state: "{{ (max((states('input_number.setpoint_temperatuur_vloerverwarming') | float) - (states('sensor.woonkamer_vloerverwaring_verdeler_temperatuur') | float), 0)) * (states('input_number.cv_factor_woonkamer_vloerverwarming') | float) | round(1) }}"
+# TODO: No sensor at verdeler yet
+#    state: "{{ (max((states('input_number.setpoint_temperatuur_woonkamer') | float) - (states('sensor.woonkamer_gemiddelde_temperatuur') | float), 0) * (states('input_number.input_number.cv_factor_woonkamer_vloerverwarming') | float)) | round(1) }}"
+    state: 0.0
+    availability: true
+binary_sensor:
+  - name: "woonkamer verzoek verwarming"
+    unique_id: woonkamer_verzoek_verwarming
+    state: "{{ is_state_attr('climate.radiator_woonkamer', 'hvac_action', 'heating') }}"
+    availability: true
+  - name: "vloerverwarming verzoek verwarming"
+    unique_id: vloerverwarming_verzoek_verwarming
+    state: false
+#    state: "{{ is_state_attr('climate.radiator_woonkamer', 'hvac_action', 'heating') }}"
+    availability: true

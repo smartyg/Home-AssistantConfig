@@ -1,0 +1,15 @@
+- id: garage_radiator_temperatuur_correctie
+  alias: "Corrigeer de temperatuur meting van de thermostaatknop"
+  description: "Corigeer de offset van de temperatuur meting van de thermostaatknop aan de hand van de gemiddelde temperatuur"
+  initial_state: true
+  mode: restart
+  trigger:
+    - platform: state
+      entity_id:
+        - sensor.garage_gemiddelde_temperatuur
+  action:
+    - action: number.set_value
+      data:
+        value: "{{ ((states('sensor.garage_gemiddelde_temperatuur') | float) - (states('sensor.garage_gemeten_temperatuur') | float)) | round(1) }}"
+      target:
+        entity_id: number.radiator_garage_local_temperature_calibration

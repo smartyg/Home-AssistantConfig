@@ -1,0 +1,16 @@
+- platform: min_max
+  unique_id: douche_gemiddelde_temperatuur
+  name: 'Douche gemiddelde temperatuur'
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.douche_gemeten_temperatuur
+- platform: filter
+  unique_id: douche_temperatuur
+  name: 'Douche temperatuur'
+  entity_id: sensor.douche_gemiddelde_temperatuur
+  filters:
+    - filter: time_simple_moving_average
+      window_size: "00:10"
+    - filter: time_throttle
+      window_size: "00:01"

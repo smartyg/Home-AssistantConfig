@@ -1,0 +1,5 @@
+cv_tijd_aan:
+  name: 'Cv handmatig voor deze periode aanzetten'
+  has_date: false
+  has_time: true
+  initial: 00:00

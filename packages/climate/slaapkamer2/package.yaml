@@ -1,0 +1,7 @@
+package_klimaat_slaapkamer2:
+#  input_boolean: !include input_boolean.yml
+#  climate: !include climate.yml
+  input_number: !include input_number.yml
+  sensor: !include sensor.yml
+  template: !include template.yml
+  automation: !include automation.yml

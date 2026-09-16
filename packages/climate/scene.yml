@@ -1,0 +1,83 @@
+- name: CV thuis
+  description: ""
+  entities:
+    climate.radiator_woonkamer:
+      state: "off"
+    climate.radiator_slaapkamer:
+      state: "off"
+    climate.radiator_slaapkamer2:
+      state: "off"
+    climate.radiator_douche:
+      state: "off"
+    climate.radiator_zolder:
+      state: "off"
+    climate.radiator_garage:
+      state: "off"
+
+- name: CV slapen
+  description: ""
+  entities:
+    climate.radiator_woonkamer:
+      state: "off"
+    climate.radiator_slaapkamer:
+      state: "heat"
+      temperature: 17
+    climate.radiator_slaapkamer2:
+      state: "off"
+    climate.radiator_douche:
+      state: "off"
+    climate.radiator_zolder:
+      state: "off"
+    climate.radiator_garage:
+      state: "off"
+
+- name: CV opstaan
+  description: ""
+  entities:
+    climate.radiator_woonkamer:
+      state: "off"
+    climate.radiator_slaapkamer:
+      state: "off"
+    climate.radiator_slaapkamer2:
+      state: "off"
+    climate.radiator_douche:
+      state: "heat"
+      temperature: 18
+    climate.radiator_zolder:
+      state: "off"
+    climate.radiator_garage:
+      state: "off"
+
+- name: CV thuiswerken
+  description: ""
+  entities:
+    climate.radiator_woonkamer:
+      state: "off"
+    climate.radiator_slaapkamer:
+      state: "off"
+    climate.radiator_slaapkamer2:
+      state: "off"
+    climate.radiator_douche:
+      state: "off"
+    climate.radiator_zolder:
+      state: "heat"
+      temperature: 18
+    climate.radiator_garage:
+      state: "off"
+
+- name: CV afwezig
+  description: ""
+  entities:
+    climate.radiator_woonkamer:
+      state: "off"
+    climate.radiator_slaapkamer:
+      state: "off"
+    climate.radiator_slaapkamer2:
+      state: "off"
+    climate.radiator_douche:
+      state: "off"
+    climate.radiator_zolder:
+      state: "heat"
+      temperature: 18
+    climate.radiator_garage:
+      state: "off"

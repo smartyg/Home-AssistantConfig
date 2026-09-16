@@ -1,0 +1,9 @@
+licht_eetkamer:
+  name: 'Status lichten in de Eetkamer'
+  options:
+    - vol
+    - dim
+    - nacht
+    - uit
+  initial: uit
+  icon: mdi:lightbulb-group

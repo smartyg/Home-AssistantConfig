@@ -1,0 +1,9 @@
+- platform: min_max
+  unique_id: hal_gemiddelde_lichtsterkte
+  name: 'Hal gemiddelde lichtsterkte'
+  type: mean
+  round_digits: 0
+  entity_ids:
+    - sensor.beweging_hal_achter_illuminance
+    - sensor.beweging_hal_voor_illuminance
+    - sensor.beweging_hal_trap_illuminance

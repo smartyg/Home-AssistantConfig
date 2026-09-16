@@ -1,0 +1,14 @@
+- id: 'scene_eetkamer_vol_licht'
+  name: Vol licht eetkamer
+  icon: mdi:lightbulb-on-90
+  entities:
+    input_select.licht_eetkamer: vol
+    light.licht_eetkamer_hoog:
+      brightness: 255
+      state: 'on'
+    light.licht_eetkamer_midden:
+      brightness: 255
+      state: 'on'
+    light.licht_eetkamer_laag:
+      brightness: 255
+      state: 'on'

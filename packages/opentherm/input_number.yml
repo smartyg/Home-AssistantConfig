@@ -1,0 +1,26 @@
+boiler_cv_water_temperatuur:
+  name: "CV water temperatuur"
+  min: 30
+  max: 90
+  initial: 35
+  unit_of_measurement: "°C"
+  mode: slider
+  icon: mdi:thermometer-water
+
+boiler_warm_water_temperatuur:
+  name: "Warm water temperatuur"
+  min: 40
+  max: 80
+  initial: 60
+  unit_of_measurement: "°C"
+  mode: slider
+  icon: mdi:thermometer-water
+
+boiler_maximum_modulatie_level:
+  name: "Maximale modulatie"
+  min: 1
+  max: 100
+  initial: 30
+  unit_of_measurement: "%"
+  mode: slider
+  icon: mdi:percent

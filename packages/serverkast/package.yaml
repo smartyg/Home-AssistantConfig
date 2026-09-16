@@ -1,0 +1,2 @@
+package_serverkast:
+  sensor: !include sensor.yml

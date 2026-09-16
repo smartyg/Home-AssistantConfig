@@ -1,0 +1,11 @@
+licht_woonkamer:
+  name: 'Status lichten in de woonkamer'
+  options:
+    - vol
+    - dim
+    - nacht
+    - sfeer
+    - film
+    - uit
+  initial: uit
+  icon: mdi:lightbulb-group

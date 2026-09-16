@@ -1,0 +1,58 @@
+# color_temp calculation
+# RS227T: color_temp = (c - 2202) / (5000-2202) * (454 - 200) + 200
+# RS227T: color_temp = (c - 2202) * 0.0908 + 200
+# RS230C : color_temp = (c - 1801) / (6535 - 1801) * (555 - 153) + 153
+# RS230C : color_temp = (c - 1801) * 0.0849 + 153
+
+- id: 'scene_keuken_dim_licht'
+  name: Dim licht keuken
+  icon: mdi:lightbulb-on-50
+  entities:
+    input_select.licht_keuken: dim
+    light.licht_keuken_1a:
+      brightness: 192
+      color_temp: 427
+      state: 'on'
+    light.licht_keuken_1b:
+      brightness: 192
+      color_temp: 427
+      state: 'on'
+    light.licht_keuken_1c:
+      brightness: 192
+      color_temp: 427
+      state: 'on'
+    light.licht_keuken_1d:
+      brightness: 192
+      color_temp: 427
+      state: 'on'
+    light.licht_keuken_2a:
+      brightness: 255
+      color_temp: 408
+      state: 'on'
+    light.licht_keuken_2c:
+      brightness: 288
+      color_temp: 408
+      state: 'on'
+    light.licht_keuken_2d:
+      brightness: 192
+      color_temp: 427
+      state: 'on'
+    light.licht_keuken_3a:
+      brightness: 192
+      color_temp: 427
+      state: 'on'
+    light.licht_keuken_3b:
+      brightness: 192
+      color_temp: 427
+      state: 'on'
+    light.licht_keuken_3c:
+      brightness: 192
+      color_temp: 427
+      state: 'on'
+    light.licht_keuken_3d:
+      brightness: 192
+      color_temp: 427
+      state: 'on'
+    light.licht_keuken_onder_aanrecht: 'off'
+    light.licht_keuken_boven_aanrecht: 'off'
+    light.licht_keuken_onder_eiland: 'off'

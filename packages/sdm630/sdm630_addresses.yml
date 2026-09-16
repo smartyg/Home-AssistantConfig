@@ -1,0 +1,30 @@
+- name: Phase 1 line to neutral volts
+  unique_id: l1_neutral_volts
+  data_type: float32
+  precision: 2
+  address: 0
+  input_type: input
+  slave: 1
+  unit_of_measurement: V
+  state_class: measurement
+  device_class: voltage
+- name: Phase 2 line to neutral volts
+  unique_id: l2_neutral_volts
+  data_type: float32
+  precision: 2
+  address: 2
+  input_type: input
+  slave: 1
+  unit_of_measurement: V
+  state_class: measurement
+  device_class: voltage
+- name: Phase 3 line to neutral volts
+  unique_id: l3_neutral_volts
+  data_type: float32
+  precision: 2
+  address: 4
+  input_type: input
+  slave: 1
+  unit_of_measurement: V
+  state_class: measurement
+  device_class: voltage

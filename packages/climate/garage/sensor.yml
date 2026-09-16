@@ -1,0 +1,16 @@
+- platform: min_max
+  unique_id: garage_gemiddelde_temperatuur
+  name: 'Garage gemiddelde temperatuur'
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.garage_gemeten_temperatuur
+- platform: filter
+  unique_id: garage_temperatuur
+  name: 'Garage temperatuur'
+  entity_id: sensor.garage_gemiddelde_temperatuur
+  filters:
+    - filter: time_simple_moving_average
+      window_size: "00:10"
+    - filter: time_throttle
+      window_size: "00:01"

@@ -1,0 +1,30 @@
+cv_factor_woonkamer_radiator:
+  name: 'CV factor woonkamer radiator'
+  initial: 1
+  min: 0
+  max: 4
+  step: 0.1
+  mode: box
+cv_factor_woonkamer_vloerverwarming:
+  name: 'CV factor woonkamer vloerverwarming'
+  initial: 1
+  min: 0
+  max: 4
+  step: 0.1
+  mode: box
+setpoint_temperatuur_vloerverwarming:
+  name: 'Setpoint temperatuur vloerverwarming'
+  initial: 22
+  min: 15
+  max: 40
+  step: 1
+  mode: box
+  unit_of_measurement: "°C"
+setpoint_temperatuur_woonkamer:
+  name: 'Setpoint temperatuur woonkamer'
+  initial: 18
+  min: 15
+  max: 25
+  step: 0.5
+  mode: box
+  unit_of_measurement: "°C"

@@ -1,0 +1,4 @@
+package_sdm630:
+  modbus: !include modbus.yml
+#  notify: !include notify.yml
+  automation: !include automation.yml

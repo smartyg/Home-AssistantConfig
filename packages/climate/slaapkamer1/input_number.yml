@@ -1,0 +1,7 @@
+cv_factor_slaapkamer1_radiator:
+  name: 'CV factor slaapkamer 1 radiator'
+  initial: 1
+  min: 0
+  max: 4
+  step: 0.1
+  mode: box

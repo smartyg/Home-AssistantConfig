@@ -1,0 +1,12 @@
+- id: 'sensor_values_to_file'
+  alias: 'Sensor values to file'
+  initial_state: 'on'
+  trigger:
+    - platform: time_pattern
+      seconds: "/11"
+  action:
+    - action: notify.send_message
+      target:
+        entity_id: notify.energy_monitor  # Of de naam die je bij stap 2 hebt gevonden/ingesteld
+      data:
+        message: "{{ now().strftime('%d-%m-%Y,%H:%M:%S') }}"

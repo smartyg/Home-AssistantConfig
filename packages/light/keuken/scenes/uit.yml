@@ -1,0 +1,19 @@
+- id: 'scene_keuken_uit'
+  name: Licht uit keuken
+  icon: mdi:lightbulb-off
+  entities:
+    input_select.licht_keuken: uit
+    light.licht_keuken_1a: 'off'
+    light.licht_keuken_1b: 'off'
+    light.licht_keuken_1c: 'off'
+    light.licht_keuken_1d: 'off'
+    light.licht_keuken_2a: 'off'
+    light.licht_keuken_2c: 'off'
+    light.licht_keuken_2d: 'off'
+    light.licht_keuken_3a: 'off'
+    light.licht_keuken_3b: 'off'
+    light.licht_keuken_3c: 'off'
+    light.licht_keuken_3d: 'off'
+    light.licht_keuken_onder_aanrecht: 'off'
+    light.licht_keuken_boven_aanrecht: 'off'
+    light.licht_keuken_onder_eiland: 'off'

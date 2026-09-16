@@ -1,0 +1,7 @@
+- platform: min_max
+  unique_id: zolder_gemiddelde_temperatuur
+  name: 'Zolder gemiddelde temperatuur'
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.zolder_gemeten_temperatuur

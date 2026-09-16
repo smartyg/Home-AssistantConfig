@@ -1,0 +1,10 @@
+cv_profiel:
+  name: 'Status van de centrale verwarming'
+  options:
+    - thuis
+    - slapen
+    - opstaan
+    - thuiswerken
+    - afwezig
+  initial: thuis
+  icon: mdi:lightbulb-group

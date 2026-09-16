@@ -1,0 +1,19 @@
+- platform: generic_thermostat
+  name: Thermostaat master bed room
+  unique_id: thermostaat_slaapkamer1
+  heater: input_boolean.slaapkamer1_verwarming_verzoek
+  target_sensor: sensor.master_bed_room_gemiddelde_temperatuur
+  min_temp: 10
+  max_temp: 25
+  target_temp: 16
+  ac_mode: false
+  cold_tolerance: 0.5
+  hot_tolerance: 0.5
+  initial_hvac_mode: "off"
+  away_temp: 10
+  comfort_temp: 18
+  eco_temp: 16
+  home_temp: 16
+  sleep_temp: 16
+  precision: 0.1
+  target_temp_step: 1.0

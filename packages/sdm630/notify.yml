@@ -1,0 +1,4 @@
+- platform: file
+  name: energy_monitor
+  filename: /data/log/energy_data.csv
+  timestamp: false

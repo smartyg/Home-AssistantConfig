@@ -1,0 +1,8 @@
+- id: 'scene_eetkamer_uit'
+  name: Licht uit eetkamer
+  icon: mdi:lightbulb-off
+  entities:
+    input_select.licht_eetkamer: uit
+    light.licht_eetkamer_hoog: 'off'
+    light.licht_eetkamer_midden: 'off'
+    light.licht_eetkamer_laag: 'off'

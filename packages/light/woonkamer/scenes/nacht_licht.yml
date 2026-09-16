@@ -1,0 +1,27 @@
+# color_temp calculation
+# RS227T: color_temp = (c - 2202) / (5000-2202) * (454 - 200) + 200
+# RS227T: color_temp = (c - 2202) * 0.0908 + 200
+# RS230C : color_temp = (c - 1801) / (6535 - 1801) * (555 - 153) + 153
+# RS230C : color_temp = (c - 1801) * 0.0849 + 153
+
+- id: 'scene_woonkamer_nacht_licht'
+  name: Nacht licht woonkamer
+  icon: mdi:lightbulb-on-10
+  entities:
+    input_select.licht_woonkamer: nacht
+    light.licht_woonkamer_1: 'off'
+    light.licht_woonkamer_2:
+      brightness: 4
+      color_temp: 412
+      state: 'on'
+    light.licht_woonkamer_3: 'off'
+    light.licht_woonkamer_4:
+      brightness: 25
+      color_temp: 412
+      state: 'on'
+    light.licht_woonkamer_5: 'off'
+    light.licht_woonkamer_6: 'off'
+    light.licht_woonkamer_7:
+      brightness: 4
+      color_temp: 412
+      state: 'on'

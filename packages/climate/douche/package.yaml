@@ -1,0 +1,5 @@
+package_klimaat_douche:
+  input_number: !include input_number.yml
+  sensor: !include sensor.yml
+  template: !include template.yml
+  automation: !include automation.yml

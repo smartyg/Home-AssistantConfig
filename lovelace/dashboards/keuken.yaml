@@ -1,0 +1,53 @@
+views:
+  - title: Home
+    badges:
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: scene.licht_uit
+        tap_action:
+          action: toggle
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: scene.koken_licht
+        tap_action:
+          action: toggle
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: scene.dim_licht
+        tap_action:
+          action: toggle
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: scene.vol_licht
+        tap_action:
+          action: toggle
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: scene.nacht_licht
+        tap_action:
+          action: toggle
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: scene.showroom_licht
+        tap_action:
+          action: toggle
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: scene.sfeer_licht
+        tap_action:
+          action: toggle
+

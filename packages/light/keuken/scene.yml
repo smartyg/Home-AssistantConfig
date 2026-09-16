@@ -1,0 +1,7 @@
+scene dim_licht: !include scenes/dim_licht.yml
+scene koken: !include scenes/koken.yml
+scene nacht_licht: !include scenes/nacht_licht.yml
+scene sfeer_licht: !include scenes/sfeer_licht.yml
+scene showroom: !include scenes/showroom.yml
+scene uit: !include scenes/uit.yml
+scene vol_licht: !include scenes/vol_licht.yml

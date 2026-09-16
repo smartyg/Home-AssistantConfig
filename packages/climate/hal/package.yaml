@@ -1,0 +1,3 @@
+package_klimaat_hal:
+  sensor: !include sensor.yml
+  automation: !include automation.yml

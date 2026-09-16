@@ -1,0 +1,12 @@
+mode: yaml
+resources:
+  - url: /local/numberbox-card.js?v=1
+    type: module
+dashboards:
+  lovelace-generate: # Needs to contain a hyphen (-)
+    mode: yaml
+    filename: dashboards/keuken.yaml
+    title: Keuken
+    icon: mdi:countertop
+    show_in_sidebar: true
+    require_admin: false

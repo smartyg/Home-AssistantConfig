@@ -1,0 +1,6 @@
+package_verwarming:
+  template: !include template.yml
+  input_boolean: !include input_boolean.yml
+  input_datetime: !include input_datetime.yml
+  automation: !include automation.yml
+  sensor: !include sensor.yml

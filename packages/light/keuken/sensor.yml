@@ -1,0 +1,8 @@
+- platform: min_max
+  unique_id: keuken_gemiddelde_lichtsterkte
+  name: 'Keuken gemiddelde lichtsterkte'
+  type: mean
+  round_digits: 0
+  entity_ids:
+    - sensor.beweging_keuken_rechts_illuminance
+    - sensor.beweging_keuken_links_illuminance

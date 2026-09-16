@@ -1,0 +1,10 @@
+package_light_woonkamer:
+  automation: !include automation.yml
+#  sensor: !include sensor.yml
+  input_select: !include input_select.yml
+  scene lichten_woonkamer_dim_licht: !include scenes/dim_licht.yml
+  scene lichten_woonkamer_nacht_licht: !include scenes/nacht_licht.yml
+  scene lichten_woonkamer_sfeer_licht: !include scenes/sfeer_licht.yml
+  scene lichten_woonkamer_film_licht: !include scenes/film_licht.yml
+  scene lichten_woonkamer_uit: !include scenes/uit.yml
+  scene lichten_woonkamer_vol_licht: !include scenes/vol_licht.yml

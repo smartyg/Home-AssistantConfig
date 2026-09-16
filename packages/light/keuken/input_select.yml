@@ -1,0 +1,12 @@
+licht_keuken:
+  name: 'Status lichten in de Keuken'
+  options:
+    - koken
+    - vol
+    - dim
+    - nacht
+    - sfeer
+    - showroom
+    - uit
+  initial: uit
+  icon: mdi:lightbulb-group

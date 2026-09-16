@@ -1,0 +1,27 @@
+- platform: min_max
+  unique_id: keuken_gemiddelde_temperatuur
+  name: 'Keuken gemiddelde temperatuur'
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.beweging_keuken_rechts_temperature
+    - sensor.beweging_keuken_links_temperature
+- platform: min_max
+  unique_id: woonkamer_gemiddelde_temperatuur
+  name: 'Woonkamer gemiddelde temperatuur'
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.woonkamer_gemeten_temperatuur
+    - sensor.keuken_gemiddelde_temperatuur
+    - sensor.sensor_eetkamer_temperature
+    - sensor.sensor_woonkamer_temperature
+- platform: filter
+  unique_id: woonkamer_temperatuur
+  name: 'Woonkamer temperatuur'
+  entity_id: sensor.woonkamer_gemiddelde_temperatuur
+  filters:
+    - filter: time_simple_moving_average
+      window_size: "00:10"
+    - filter: time_throttle
+      window_size: "00:01"

@@ -1,0 +1,52 @@
+sensor:
+  - name: 'totale waarde cv vraag'
+    unique_id: totale_waarde_cv_vraag
+    state: >
+      {{ states('sensor.waarde_cv_vraag_woonkamer_vloerverwarming') | float +
+         states('sensor.waarde_cv_vraag_slaapkamer_1') | float +
+         states('sensor.waarde_cv_vraag_slaapkamer_2') | float +
+         states('sensor.waarde_cv_vraag_douche') | float +
+         states('sensor.waarde_cv_vraag_zolder') | float +
+         states('sensor.waarde_cv_vraag_garage') | float }}
+    availability: true
+
+binary_sensor:
+  - name: 'De CV wordt gevraagd aan te slaan'
+    unique_id: verwarming_gevraagd
+# removed: "or is_state('binary_sensor.garage_verzoek_verwarming', 'on')"
+#    state: >
+#      {{ is_state('binary_sensor.vloerverwarming_verzoek_verwarming', 'on')
+#         or is_state('binary_sensor.woonkamer_verzoek_verwarming', 'on')
+#         or is_state('binary_sensor.slaapkamer1_verzoek_verwarming', 'on')
+#         or is_state('binary_sensor.slaapkamer2_verzoek_verwarming', 'on')
+#         or is_state('binary_sensor.douche_verzoek_verwarming', 'on')
+#         or is_state('binary_sensor.zolder_verzoek_verwarming', 'on')
+#         or is_state('input_boolean.cv_handmatig_aanzetten', 'on')
+#         or state_attr('input_datetime.cv_tijd_aan', 'timestamp') > 0 }}
+    state: >
+      {{ ((states('sensor.totale_waarde_cv_vraag') | float) > 0.5)
+         or state_attr('input_datetime.cv_tijd_aan', 'timestamp') > 0 }}
+    availability: true
+#  - name: 'totale waarde cv vraag'
+#    unique_id: totale_waarde_cv_vraag
+#    state: >
+#      {{ (states('sensor.waarde_cv_vraag_woonkamer') | float +
+#         states('sensor.waarde_cv_vraag_woonkamer_vloerverwarming') | float +
+#         states('sensor.waarde_cv_vraag_slaapkamer_1') | float +
+#         states('sensor.waarde_cv_vraag_slaapkamer_2') | float +
+#         states('sensor.waarde_cv_vraag_douche') | float +
+#         states('sensor.waarde_cv_vraag_zolder') | float +
+#         states('sensor.waarde_cv_vraag_garage') | float) > 0.5 }}
+#    availability: true
+  - name: 'Warm water leveren'
+    unique_id: ww_leveren
+    state: >
+      {{ is_state('binary_sensor.opentherm_boiler_hot_water', 'on')
+         and is_state('binary_sensor.opentherm_boiler_flame', 'on') }}
+    availability: true
+  - name: 'Centrale verwarming leveren'
+    unique_id: cv_leveren
+    state: >
+      {{ is_state('binary_sensor.opentherm_boiler_central_heating_1', 'on')
+         and is_state('binary_sensor.opentherm_boiler_flame', 'on') }}
+    availability: true

@@ -1,0 +1,14 @@
+- id: 'scene_eetkamer_dim_licht'
+  name: Dim licht eetkamer
+  icon: mdi:lightbulb-on-70
+  entities:
+    input_select.licht_keuken: dim
+    light.licht_eetkamer_hoog:
+      brightness: 192
+      state: 'on'
+    light.licht_eetkamer_midden:
+      brightness: 192
+      state: 'on'
+    light.licht_eetkamer_laag:
+      brightness: 192
+      state: 'on'

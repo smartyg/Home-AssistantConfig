@@ -1,0 +1,99 @@
+- id: licht_keuken_schakel_aan_dim_1
+  alias: "schakel lichten keuken aan"
+  description: "Schakel de lichten aan (dim) als deze uit staat"
+  initial_state: true
+  mode: restart
+  trigger:
+    - id: schakelaar_keuken_1a
+      platform: state
+      entity_id:
+        - switch.schakelaar_keuken_1a
+#        - switch.schakelaar_keuken_2a
+      from: null
+    - id: schakelaar_keuken_2a
+      platform: device
+      domain: mqtt
+      device_id: a3211e177c8cdf97037fb3448b711422 # Schakelaar Keuken 2A
+      type: action
+      subtype: toggle
+  condition:
+    - condition: state
+      entity_id: input_select.licht_keuken
+      state: "uit"
+  action:
+    - action: scene.turn_on
+      target:
+        entity_id: scene.dim_licht
+
+- id: licht_keuken_schakel_uit
+  alias: "schakel lichten keuken uit"
+  description: "Schakel de lichten uit als deze aanstaat"
+  initial_state: true
+  mode: restart
+  trigger:
+    - id: schakelaar_keuken_1a
+      platform: state
+      entity_id:
+        - switch.schakelaar_keuken_1a
+#        - switch.schakelaar_keuken_2a
+      from: null
+    - id: schakelaar_keuken_2a
+      platform: device
+      domain: mqtt
+      device_id: a3211e177c8cdf97037fb3448b711422 # Schakelaar Keuken 2A
+      type: action
+      subtype: toggle
+  condition:
+    - alias: "if lights are not off"
+      condition: not
+      conditions:
+        - condition: state
+          entity_id: input_select.licht_keuken
+          state: "uit"
+  action:
+    - action: scene.turn_on
+      target:
+        entity_id: scene.licht_uit
+
+- id: licht_keuken_schakel_aan_koken
+  alias: "schakel lichten in de keuken naar kook stand"
+  description: "Schakel de lichten in de keuken in de kook stand als deze nog niet in de kook stand staan"
+  initial_state: true
+  mode: restart
+  trigger:
+    - id: schakelaar_keuken_2b
+      platform: state
+      entity_id:
+        - switch.schakelaar_keuken_2b
+      from: null
+  condition:
+    - alias: "als niet in kook stand staan"
+      condition: not
+      conditions:
+        - condition: state
+          entity_id: input_select.licht_keuken
+          state: "koken"
+  action:
+    - action: scene.turn_on
+      target:
+        entity_id: scene.koken_licht
+
+- id: licht_keuken_schakel_aan_dim_2
+  alias: "schakel lichten in de keuken naar dim stand"
+  description: "Schakel de lichten in de keuken in de dim stand als deze in de kook stand staan"
+  initial_state: true
+  mode: restart
+  trigger:
+    - id: schakelaar_keuken_2b
+      platform: state
+      entity_id:
+        - switch.schakelaar_keuken_2b
+      from: null
+  condition:
+    - condition: state
+      entity_id: input_select.licht_keuken
+      state: "koken"
+  action:
+    - action: scene.turn_on
+      target:
+        entity_id: scene.dim_licht

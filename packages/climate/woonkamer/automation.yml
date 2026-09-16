@@ -1,0 +1,60 @@
+- id: woonkamer_radiator_temperatuur_correctie
+  alias: "Corrigeer de temperatuur meting van de thermostaatknop"
+  description: "Corigeer de offset van de temperatuur meting van de thermostaatknop aan de hand van de gemiddelde temperatuur"
+  initial_state: true
+  mode: restart
+  trigger:
+    - platform: state
+      entity_id:
+        - sensor.woonkamer_temperatuur
+  action:
+    - action: number.set_value
+      data:
+        value: "{{ ((states('sensor.woonkamer_temperatuur') | float) - (states('sensor.woonkamer_gemeten_temperatuur') | float)) | round(1) }}"
+      target:
+        entity_id: number.radiator_woonkamer_local_temperature_calibration
+- id: woonkamer_luchtreiniger_aan
+  alias: "Zet de luchtreiniger ieder 6 uur aan"
+  description: "Zet de luchtreiniger iedere 6 uur aan op de automatische stand"
+  initial_state: true
+  mode: restart
+  trigger:
+    - platform: time_pattern
+      hours: /6
+      minutes: 0
+  conditions:
+    - condition: state
+      entity_id: fan.luchtreiniger_woonkamer
+      state: "off"
+  actions:
+    - action: fan.set_preset_mode
+      target:
+        entity_id: fan.luchtreiniger_woonkamer
+      data:
+        preset_mode: auto
+- id: woonkamer_luchtreiniger_uit
+  alias: "Zet de luchtreiniger uit"
+  description: "Zet de luchtreiniger uit als de PM2.5 waarde 30 minuten onder de 10 is"
+  initial_state: true
+  mode: single
+  triggers:
+    - trigger: numeric_state
+      entity_id:
+        - sensor.luchtreiniger_woonkamer_pm25
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+      below: 10
+  conditions:
+    - condition: device
+      device_id: 04502c40c2b40f22bd13b8439f61a3f4
+      domain: fan
+      entity_id: 4ea9076320b8995e0744b4ca0ca7f5d9
+      type: is_on
+  actions:
+    - type: turn_off
+      device_id: 04502c40c2b40f22bd13b8439f61a3f4
+      entity_id: 4ea9076320b8995e0744b4ca0ca7f5d9
+      domain: fan
+    

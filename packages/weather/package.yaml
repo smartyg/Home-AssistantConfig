@@ -1,0 +1,4 @@
+#package_weer:
+# template: !include template.yml
+# sensor: !include sensor.yml
+# utility_meter: !include utility_meter.yml

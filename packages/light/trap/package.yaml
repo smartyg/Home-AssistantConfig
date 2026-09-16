@@ -1,0 +1,4 @@
+package_light_trap:
+  automation: !include automation.yml
+  sensor: !include sensor.yml
+  scene: !include scene.yml

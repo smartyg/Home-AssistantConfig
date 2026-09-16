@@ -1,0 +1,44 @@
+- id: licht_woonkamer_schakel_aan_vol
+  alias: "schakel lichten woonkamer aan"
+  description: "Schakel de lichten aan (dim) als deze uit staat"
+  initial_state: true
+  mode: restart
+  trigger:
+    - id: schakelaar_woonkamer
+      platform: device
+      domain: mqtt
+      device_id: a2a05b4122ed28c46b2edb2753a6c08d # Schakelaar Woonkamer
+      type: action
+      subtype: toggle
+  condition:
+    - condition: state
+      entity_id: input_select.licht_woonkamer
+      state: "uit"
+  action:
+    - action: scene.turn_on
+      target:
+        entity_id: scene.dim_licht_2
+
+- id: licht_woonkamer_schakel_uit
+  alias: "schakel lichten woonkamer uit"
+  description: "Schakel de lichten uit als deze aanstaan"
+  initial_state: true
+  mode: restart
+  trigger:
+    - id: schakelaar_woonkamer
+      platform: device
+      domain: mqtt
+      device_id: a2a05b4122ed28c46b2edb2753a6c08d # Schakelaar Woonkamer
+      type: action
+      subtype: toggle
+  condition:
+    - alias: "if lights are not off"
+      condition: not
+      conditions:
+        - condition: state
+          entity_id: input_select.licht_woonkamer
+          state: "uit"
+  action:
+    - action: scene.turn_on
+      target:
+        entity_id: scene.licht_uit_2

@@ -1,0 +1,14 @@
+- id: 'scene_eetkamer_nacht_licht'
+  name: Nacht licht eetkamer
+  icon: mdi:lightbulb-on-10
+  entities:
+    input_select.licht_eetkamer: nacht
+    light.licht_eetkamer_hoog:
+      brightness: 32
+      state: 'on'
+    light.licht_eetkamer_midden:
+      brightness: 32
+      state: 'on'
+    light.licht_eetkamer_laag:
+      brightness: 32
+      state: 'on'

@@ -1,0 +1,39 @@
+# color_temp calculation
+# RS227T: color_temp = (c - 2202) / (5000-2202) * (454 - 200) + 200
+# RS227T: color_temp = (c - 2202) * 0.0908 + 200
+# RS230C : color_temp = (c - 1801) / (6535 - 1801) * (555 - 153) + 153
+# RS230C : color_temp = (c - 1801) * 0.0849 + 153
+
+- id: 'scene_woonkamer_film_licht'
+  name: Film licht woonkamer
+  icon: mdi:lightbulb-on-50
+  entities:
+    input_select.licht_woonkamer: film
+    light.licht_woonkamer_1:
+      brightness: 192
+      color_temp: 427
+      state: 'on'
+    light.licht_woonkamer_2:
+      brightness: 192
+      color_temp: 427
+      state: 'on'
+    light.licht_woonkamer_3:
+      brightness: 192
+      color_temp: 427
+      state: 'on'
+    light.licht_woonkamer_4:
+      brightness: 192
+      color_temp: 427
+      state: 'on'
+    light.licht_woonkamer_5:
+      brightness: 255
+      color_temp: 408
+      state: 'on'
+    light.licht_woonkamer_6:
+      brightness: 288
+      color_temp: 408
+      state: 'on'
+    light.licht_woonkamer_7:
+      brightness: 192
+      color_temp: 427
+      state: 'on'

@@ -1,0 +1,44 @@
+- id: licht_eetkamer_schakel_aan_vol
+  alias: "schakel lichten eetkamer aan"
+  description: "Schakel de lichten aan (vol) als deze uit staat"
+  initial_state: true
+  mode: restart
+  trigger:
+    - id: schakelaar_eetkamer
+      platform: device
+      domain: mqtt
+      device_id: 31ffa69013f58a355aaa7d38b879a5c5 # Schakelaar Eetkamer
+      type: action
+      subtype: toggle
+  condition:
+    - condition: state
+      entity_id: input_select.licht_eetkamer
+      state: "uit"
+  action:
+    - action: scene.turn_on
+      target:
+        entity_id: scene.vol_licht_eetkamer
+
+- id: licht_eetkamer_schakel_uit
+  alias: "schakel lichten eetkamer uit"
+  description: "Schakel de lichten uit als deze aanstaan"
+  initial_state: true
+  mode: restart
+  trigger:
+    - id: schakelaar_eetkamer
+      platform: device
+      domain: mqtt
+      device_id: 31ffa69013f58a355aaa7d38b879a5c5 # Schakelaar Eetkamer
+      type: action
+      subtype: toggle
+  condition:
+    - alias: "if lights are not off"
+      condition: not
+      conditions:
+        - condition: state
+          entity_id: input_select.licht_eetkamer
+          state: "uit"
+  action:
+    - action: scene.turn_on
+      target:
+        entity_id: scene.licht_uit_eetkamer

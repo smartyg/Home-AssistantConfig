@@ -1,0 +1,57 @@
+energie_per_uur:
+  source: sensor.totale_energie_verbruik_tarief_1_2
+  name: Elektrisch energie verbruik per uur
+  unique_id: energie_per_uur
+  cycle: hourly
+  always_available: true
+gas_per_uur:
+  source: sensor.gas_consumed
+  name: Gas verbruik per uur
+  unique_id: gas_per_uur
+  cycle: hourly
+  always_available: true
+water_per_uur:
+  source: sensor.water_total
+  name: Water verbruik per uur
+  unique_id: water_per_uur
+  cycle: hourly
+  always_available: true
+
+dagelijks_energie:
+  source: sensor.totale_energie_verbruik_tarief_1_2
+  name: Dagelijks elektrisch energie verbruik
+  unique_id: dagelijks_energie
+  cycle: daily
+  always_available: true
+dagelijks_gas:
+  source: sensor.gas_consumed
+  name: Dagelijks gas verbruik
+  unique_id: dagelijks_gas_verbruik 
+  cycle: daily
+  always_available: true
+dagelijks_water:
+  source: sensor.water_total
+  name: Dagelijks water verbruik
+  unique_id: dagelijks_water_verbruik
+  cycle: daily
+  always_available: true
+
+maandelijks_energie:
+  source: sensor.totale_energie_verbruik_tarief_1_2
+  name: Maandelijks elektrisch energie verbruik
+  unique_id: maandelijks_energie
+  cycle: monthly
+  always_available: true
+maandelijks_gas:
+  source: sensor.gas_consumed
+  name: Maandelijks gas verbruik
+  unique_id: maandelijks_gas_verbruik
+  cycle: monthly
+  always_available: true
+maandelijks_water:
+  source: sensor.water_total
+  name: Maandelijks water verbruik 
+  unique_id: maandelijks_water_verbruik
+  cycle: monthly
+  always_available: true
+

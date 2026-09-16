@@ -1,0 +1,91 @@
+media_start_film:
+  alias: Start the film modus
+  sequence:
+    - action: media_player.turn_on
+      target:
+        entity_id:
+          - media_player.tv_woonkamer
+          - media_player.denon_avr_x2500h
+          - media_player.zoldermedia
+      data: {}
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 1
+        milliseconds: 0
+    - parallel:
+        - action: media_player.select_source
+          data:
+            source: Media Player
+          target:
+            entity_id: media_player.denon_avr_x2500h
+        - action: media_player.select_source
+          data:
+            source: HDMI
+          target:
+            entity_id: media_player.tv_woonkamer
+  description: Start de film modus en open de lijst met films
+  icon: mdi:movie
+  mode: restart
+
+
+#media_start_radio:
+
+
+media_start_netflix:
+  alias: Start the Netflix modus
+  description: Start de Netflix modus
+  icon: mdi:movie
+  mode: restart
+  sequence:
+    - action: media_player.turn_on
+      target:
+        entity_id:
+          - media_player.tv_woonkamer
+          - media_player.denon_avr_x2500h
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 1
+        milliseconds: 0
+    - parallel:
+        - action: media_player.select_source
+          target:
+            entity_id: media_player.denon_avr_x2500h
+          data:
+            source: TV Audio
+        - action: media_player.play_media
+          target:
+            entity_id: media_player.tv_woonkamer
+          data:
+            media_content_id: "11101200001"  # Netflix App ID
+            media_content_type: "app"
+
+media_start_youtube:
+  alias: Start the Youtube modus
+  description: Start de Youtube modus
+  icon: mdi:movie
+  mode: restart
+  sequence:
+    - action: media_player.turn_on
+      target:
+        entity_id:
+          - media_player.tv_woonkamer
+          - media_player.denon_avr_x2500h
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 1
+        milliseconds: 0
+    - parallel:
+        - action: media_player.select_source
+          target:
+            entity_id: media_player.denon_avr_x2500h
+          data:
+            source: TV Audio
+        - action: media_player.play_media
+          target:
+            entity_id: media_player.tv_woonkamer
+          data:
+            media_content_id: "111299001912" # YouTube App ID
+            media_content_type: "app"
