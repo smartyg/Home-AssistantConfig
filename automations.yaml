@@ -80,12 +80,12 @@
     - condition: and
       conditions:
         - condition: state
-            entity_id: input_select.licht_keuken
-            state: uit
+          entity_id: input_select.licht_keuken
+          state: uit
         - condition: numeric_state
-            entity_id: sun.sun
-            attribute: elevation
-            below: 5
+          entity_id: sun.sun
+          attribute: elevation
+          below: 5
   actions:
     - action: scene.turn_on
       metadata: {}
