@@ -3,8 +3,6 @@ default_config:
 
 homeassistant:
   customize: !include customize.yaml
-  allowlist_external_dirs:
-    - "/data"
   unit_system: metric
   packages: !include_dir_merge_named packages/
 
