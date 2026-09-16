@@ -11,50 +11,62 @@
     input_select.licht_keuken: showroom
     light.licht_keuken_1a:
       brightness: 255
+      color_mode: color_temp
       color_temp: 453
       state: 'on'
     light.licht_keuken_1b:
       brightness: 255
+      color_mode: color_temp
       color_temp: 453
       state: 'on'
     light.licht_keuken_1c:
       brightness: 255
+      color_mode: color_temp
       color_temp: 453
       state: 'on'
     light.licht_keuken_1d:
       brightness: 255
+      color_mode: color_temp
       color_temp: 453
       state: 'on'
     light.licht_keuken_2a:
       brightness: 255
+      color_mode: color_temp
       color_temp: 520
       state: 'on'
     light.licht_keuken_2c:
       brightness: 255
+      color_mode: color_temp
       color_temp: 520
       state: 'on'
     light.licht_keuken_2d:
       brightness: 255
+      color_mode: color_temp
       color_temp: 453
       state: 'on'
     light.licht_keuken_3a:
       brightness: 255
+      color_mode: color_temp
       color_temp: 453
       state: 'on'
     light.licht_keuken_3b:
       brightness: 255
+      color_mode: color_temp
       color_temp: 453
       state: 'on'
     light.licht_keuken_3c:
       brightness: 255
+      color_mode: color_temp
       color_temp: 453
       state: 'on'
     light.licht_keuken_3d:
       brightness: 255
+      color_mode: color_temp
       color_temp: 453
       state: 'on'
     light.licht_keuken_onder_eiland:
       brightness: 192
+      color_mode: rgb
       rgb_color:
         - 255
         - 255
@@ -62,6 +74,7 @@
       state: 'on'
     light.licht_keuken_onder_aanrecht:
       brightness: 192
+      color_mode: rgb
       rgb_color:
         - 255
         - 255
@@ -69,6 +82,7 @@
       state: 'on'
     light.licht_keuken_boven_aanrecht:
       brightness: 255
+      color_mode: rgb
       rgb_color:
         - 255
         - 255

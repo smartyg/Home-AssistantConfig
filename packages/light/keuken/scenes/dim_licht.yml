@@ -11,46 +11,57 @@
     input_select.licht_keuken: dim
     light.licht_keuken_1a:
       brightness: 192
+      color_mode: color_temp
       color_temp: 427
       state: 'on'
     light.licht_keuken_1b:
       brightness: 192
+      color_mode: color_temp
       color_temp: 427
       state: 'on'
     light.licht_keuken_1c:
       brightness: 192
+      color_mode: color_temp
       color_temp: 427
       state: 'on'
     light.licht_keuken_1d:
       brightness: 192
+      color_mode: color_temp
       color_temp: 427
       state: 'on'
     light.licht_keuken_2a:
       brightness: 255
+      color_mode: color_temp
       color_temp: 408
       state: 'on'
     light.licht_keuken_2c:
-      brightness: 288
+      brightness: 255
+      color_mode: color_temp
       color_temp: 408
       state: 'on'
     light.licht_keuken_2d:
       brightness: 192
+      color_mode: color_temp
       color_temp: 427
       state: 'on'
     light.licht_keuken_3a:
       brightness: 192
+      color_mode: color_temp
       color_temp: 427
       state: 'on'
     light.licht_keuken_3b:
       brightness: 192
+      color_mode: color_temp
       color_temp: 427
       state: 'on'
     light.licht_keuken_3c:
       brightness: 192
+      color_mode: color_temp
       color_temp: 427
       state: 'on'
     light.licht_keuken_3d:
       brightness: 192
+      color_mode: color_temp
       color_temp: 427
       state: 'on'
     light.licht_keuken_onder_aanrecht: 'off'

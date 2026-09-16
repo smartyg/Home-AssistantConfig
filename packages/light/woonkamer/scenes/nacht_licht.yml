@@ -12,16 +12,19 @@
     light.licht_woonkamer_1: 'off'
     light.licht_woonkamer_2:
       brightness: 4
+      color_mode: color_temp
       color_temp: 412
       state: 'on'
     light.licht_woonkamer_3: 'off'
     light.licht_woonkamer_4:
       brightness: 25
+      color_mode: color_temp
       color_temp: 412
       state: 'on'
     light.licht_woonkamer_5: 'off'
     light.licht_woonkamer_6: 'off'
     light.licht_woonkamer_7:
       brightness: 4
+      color_mode: color_temp
       color_temp: 412
       state: 'on'

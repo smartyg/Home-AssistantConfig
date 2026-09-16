@@ -11,33 +11,39 @@
     input_select.licht_keuken: nacht
     light.licht_keuken_1a:
       brightness: 32
+      color_mode: color_temp
       color_temp: 450
       state: 'on'
     light.licht_keuken_1b: 'off'
     light.licht_keuken_1c: 'off'
     light.licht_keuken_1d:
       brightness: 1
+      color_mode: color_temp
       color_temp: 450
       state: 'on'
     light.licht_keuken_2a: 'off'
     light.licht_keuken_2c: 'off'
     light.licht_keuken_2d:
       brightness: 32
+      color_mode: color_temp
       color_temp: 450
       state: 'on'
     light.licht_keuken_3a:
       brightness: 16
+      color_mode: color_temp
       color_temp: 450
       state: 'on'
     light.licht_keuken_3b: 'off'
     light.licht_keuken_3c: 'off'
     light.licht_keuken_3d:
       brightness: 1
+      color_mode: color_temp
       color_temp: 450
       state: 'on'
     light.licht_keuken_boven_aanrecht: 'off'
     light.licht_keuken_onder_aanrecht:
       brightness: 1
+      color_mode: rgb
       rgb_color:
         - 255
         - 255
@@ -45,6 +51,7 @@
       state: 'on'
     light.licht_keuken_onder_eiland:
       brightness: 1
+      color_mode: rgb
       rgb_color:
         - 255
         - 255

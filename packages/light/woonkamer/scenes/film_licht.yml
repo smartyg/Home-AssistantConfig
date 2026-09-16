@@ -9,31 +9,22 @@
   icon: mdi:lightbulb-on-50
   entities:
     input_select.licht_woonkamer: film
-    light.licht_woonkamer_1:
-      brightness: 192
-      color_temp: 427
-      state: 'on'
-    light.licht_woonkamer_2:
-      brightness: 192
-      color_temp: 427
-      state: 'on'
+    light.licht_woonkamer_1: 'off'
+    light.licht_woonkamer_2: 'off'
     light.licht_woonkamer_3:
-      brightness: 192
+      brightness: 77
+      color_mode: color_temp
       color_temp: 427
       state: 'on'
-    light.licht_woonkamer_4:
-      brightness: 192
-      color_temp: 427
-      state: 'on'
-    light.licht_woonkamer_5:
-      brightness: 255
-      color_temp: 408
-      state: 'on'
+    light.licht_woonkamer_4: 'off'
+    light.licht_woonkamer_5: 'off'
     light.licht_woonkamer_6:
-      brightness: 288
+      brightness: 102
+      color_mode: color_temp
       color_temp: 408
       state: 'on'
     light.licht_woonkamer_7:
-      brightness: 192
+      brightness: 77
+      color_mode: color_temp
       color_temp: 427
       state: 'on'
