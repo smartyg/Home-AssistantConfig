@@ -1,0 +1,44 @@
+blueprint:
+  name: Klimaat Kalibratie (Sonoff TRVZB)
+  description: Stuurt de juiste local_temperature_calibration naar Sonoff TRV's via Zigbee2MQTT.
+  domain: automation
+  input:
+    gemiddelde_sensor:
+      name: Gemiddelde temperatuursensor van de ruimte
+      selector:
+        entity:
+          domain: sensor
+          device_class: temperature
+    radiator_knoppen:
+      name: Sonoff radiatorknoppen
+      selector:
+        entity:
+          multiple: true
+          domain: climate
+
+trigger:
+  - platform: state
+    entity_id: !input gemiddelde_sensor
+
+mode: restart
+
+action:
+  - repeat:
+      for_each: !input radiator_knoppen
+      sequence:
+        - action: number.set_value
+          data:
+            value: >
+              {% set avg = states(trigger.entity_id) | float(none) %}
+              {% set cur = state_attr(repeat.item, 'current_temperature') %}
+              {% set cal_entity = 'number.' ~ repeat.item.split('.')[1] ~ '_local_temperature_calibration' %}
+              {% set cal = states(cal_entity) | float(0) %}
+
+              {% if avg is not none and cur is not none %}
+                {% set pure_knop_temp = cur - cal %}
+                {{ (avg - pure_knop_temp) | round(1) }}
+              {% else %}
+                {{ cal }}
+              {% endif %}
+          target:
+            entity_id: "number.{{ repeat.item.split('.')[1] }}_local_temperature_calibration"

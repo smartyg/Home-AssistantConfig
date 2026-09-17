@@ -1,18 +1,11 @@
-sensor:
-  - name: "slaapkamer1 gemeten temperatuur"
-    unique_id: slaapkamer1_gemeten_temperatuur
-    state_class: "measurement"
-    device_class: "temperature"
-    unit_of_measurement: "°C"
-    state: "{{ state_attr('climate.radiator_slaapkamer', 'current_temperature') - (states('number.radiator_slaapkamer_local_temperature_calibration') | float) }}"
-    availability: true
-    icon: mdi:temperature-celsius
-  - name: "Waarde cv vraag slaapkamer 1"
-    unique_id: waarde_cv_vraag_slaapkamer_1
-    state: "{% if (is_state('binary_sensor.slaapkamer1_verzoek_verwarming', 'on')) %}{{ (max((state_attr('climate.radiator_slaapkamer', 'temperature') | float) - (states('sensor.slaapkamer1_gemiddelde_temperatuur') | float), 0) * (states('input_number.cv_factor_slaapkamer1_radiator') | float)) | round(1) }}{% else %}{{ 0 | float }}{% endif %}"
-    availability: true
-binary_sensor:
-  - name: "slaapkamer1 verzoek verwarming"
-    unique_id: slaapkamer1_verzoek_verwarming
-    state: "{{ is_state_attr('climate.radiator_slaapkamer', 'hvac_action', 'heating') }}"
-    availability: true
+template:
+  - use_blueprint:
+      path: template/climate_control.yaml
+      input:
+        ruimte_prefix: "slaapkamer1"
+        ruimte_naam_vriendelijk: "Master bed room"
+        temperatuur_sensoren:
+          - sensor.sensor_slaapkamer1_temperature
+        radiator_knoppen:
+          - climate.radiator_slaapkamer
+        verwarmings_factor: 1.0 # Alleen invullen als je wilt afwijken van de standaard 1.0

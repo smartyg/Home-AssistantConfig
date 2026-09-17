@@ -1,0 +1,105 @@
+blueprint:
+  name: Klimaat Berekening Per Ruimte (Sonoff TRVZB)
+  description: Speciaal voor Sonoff TRVZB via Zigbee2MQTT. Berekent het gemiddelde en de CV-vraag.
+  domain: template
+  input:
+    ruimte_prefix:
+      name: Ruimte Prefix
+      description: "Bijv. 'slaapkamer1' (kleine letters, geen spaties)"
+      selector:
+        text:
+    ruimte_naam_vriendelijk:
+      name: Vriendelijke Naam
+      description: "Bijv. 'Master bed room'"
+      selector:
+        text:
+    temperatuur_sensoren:
+      name: Losse temperatuursensoren
+      default: []
+      selector:
+        entity:
+          multiple: true
+          domain: sensor
+          device_class: temperature
+    radiator_knoppen:
+      name: Sonoff Radiator Knoppen (Climate)
+      default: []
+      selector:
+        entity:
+          multiple: true
+          domain: climate
+    verwarmings_factor:
+      name: Verwarmingsfactor
+      description: "Factor voor CV-vraag. Optioneel aan te passen per kamer."
+      default: 1.0
+      selector:
+        number:
+          min: 0
+          max: 4
+          step: 0.1
+
+variables:
+  pfx: !input ruimte_prefix
+  friendly: !input ruimte_naam_vriendelijk
+  temp_sensors: !input temperatuur_sensoren
+  radiators: !input radiator_knoppen
+  factor: !input verwarmings_factor
+
+sensor:
+  - name: "{{ friendly }} gemiddelde temperatur"
+    unique_id: "gemiddelde_temperatuur_{{ pfx }}"
+    state_class: "measurement"
+    device_class: "temperature"
+    unit_of_measurement: "°C"
+    state: >
+      {% set ns = namespace(metingen=[]) %}
+      {% for s in temp_sensors if has_value(s) %}
+        {% set ns.metingen = ns.metingen + [states(s) | float] %}
+      {% endfor %}
+
+      {% for r in radiators if has_value(r) %}
+        {% set cur = state_attr(r, 'current_temperature') %}
+        {# Zigbee2MQTT specifieke transformatie naar de correcte number entiteit #}
+        {% set cal_entity = 'number.' ~ r.split('.')[1] ~ '_local_temperature_calibration' %}
+        {% set cal = states(cal_entity) | float(0) %}
+        {% if cur is not none %}
+          {% set ns.metingen = ns.metingen + [cur - cal] %}
+        {% endif %}
+      {% endfor %}
+
+      {% if ns.metingen | length > 0 %}
+        {{ (ns.metingen | sum / ns.metingen | length) | round(1) }}
+      {% else %}
+        unknown
+      {% endif %}
+
+  - name: "{{ friendly }} waarde CV vraag"
+    unique_id: "waarde_cv_vraag_{{ pfx }}"
+    state_class: "measurement"
+    state: >
+      {% set avg_temp = states('sensor.' ~ pfx ~ '_gemiddelde_temperatuur') | float(none) %}
+      {% set ns = namespace(max_vraag=0.0) %}
+      {% if avg_temp is not none %}
+        {% for r in radiators if has_value(r) %}
+          {% if is_state_attr(r, 'hvac_action', 'heating') %}
+            {% set target = state_attr(r, 'temperature') | float(0) %}
+            {% set vraag = max(target - avg_temp, 0) * (factor | float) %}
+            {% if vraag > ns.max_vraag %}
+              {% set ns.max_vraag = vraag %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      {{ ns.max_vraag | round(1) }}
+
+binary_sensor:
+  - name: "{{ friendly }} radiator open"
+    unique_id: "radiator_open_{{ pfx }}"
+    state: >
+      {% set ns = namespace(heating=false) %}
+      {% for r in radiators %}
+        {% if is_state_attr(r, 'hvac_action', 'heating') %}
+          {% set ns.heating = true %}
+        {% endif %}
+      {% endfor %}
+      {{ ns.heating }}

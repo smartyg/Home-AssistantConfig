@@ -1,0 +1,90 @@
+Ik heb in mijn configuratie de volgende bestanden in 1 package zitten, Deze code werkt maar moet dus per ruimte/kamer/package apart geschreven worden: automation.yml, input_number.yml, sensor.yml en template.yml.
+
+Deze code is per package, en lastig te onderhouden (veel duplicaten). Ik wil code zo veel mogelijk als blueprint hebben.
+dit zijn de inputs:
+A) 0, 1 of meerdere temperatuur sensoren (hieonder alleen sensor.sensor_slaapkamer1_temperature)
+B) 0, 1 of meerdere radiator knoppen (incl. temperatuur sensoren) (hieonder alleen climate.radiator_slaapkamer)
+C) 1 verwarmingsfactor (hieronder input_number.cv_factor_slaapkamer1_radiator)
+D) naam van de kamer/ruimte
+
+dit zijn de stappen:
+1) van iedere radiator knop wordt de werkelijke gemeten waarde berekenend door de state 'current_temperature' te verminderen met number.radiator_slaapkamer_local_temperature_calibration (onderdeel van climate.radiator_slaapkamer)
+2) gebaseerd op de temperatuurs sensoren en de gecorrigeerde temperatuur sensoren van de radiator knoppen een gemiddelde waarde/temperatuur te berekenen (zie sensor.slaapkamer1_gemiddelde_temperatuur en sensor.slaapkamer1_temperatuur)
+3) de CV vraag te berekenen per radiator knop. Als de radiator knop open staat ('hvac_action' is 'heating'), de gemiddelde waarde (uit stap 2) met de verwarmingsfactor (input C) te vermenigvuldigen
+4) de waarde van de callibratie van iedere radiator knop te berekenen (gemiddelde temperatuur uit stap 2 minus de gemeten waarde van de temperatuursensor van de radiator knop). uitleg: deze stap is nodig omdat de radiator knop zelf bepaald of deze open of dicht gaat. door de zelf gemeten waarde te corrigeren voor de delta tussen de gemeten waarde en de gemiddelde temperatuur stuurt de radiator knop effectief op de gemiddelde temperatuur ipv de locale (zelf gemeten) temperatuur.
+
+als output wil ik (minimaal) deze items:
+- gemiddelde gemeten temperatuur (stap 2)
+- per radiator knop de CV vraag (decmiaal getal) (stap 3)
+- per radiator knop of deze open of dicht is (boolean)
+
+
+De naamgeving van de output variabelen moet de naam van de kamer/ruimte als prefix gebruiken om zovoorspelbare naamgeving op te leveren
+
+Hieronder de inhoud van de verschillende bestanden voor slaapkamer1:
+
+# input_number.yml:
+cv_factor_slaapkamer1_radiator:
+  name: 'CV factor slaapkamer 1 radiator'
+  initial: 1
+  min: 0
+  max: 4
+  step: 0.1
+  mode: box
+
+# sensor.yml:
+- platform: min_max
+  unique_id: slaapkamer1_gemiddelde_temperatuur
+  name: 'Master bed room gemiddelde temperatuur'
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.slaapkamer1_gemeten_temperatuur
+    - sensor.sensor_slaapkamer1_temperature
+- platform: filter
+  unique_id: slaapkamer1_temperatuur
+  name: 'Master bed room temperatuur'
+  entity_id: sensor.slaapkamer1_gemiddelde_temperatuur
+  filters:
+    - filter: time_simple_moving_average
+      window_size: "00:10"
+    - filter: time_throttle
+      window_size: "00:01"
+
+# template.yml:
+sensor:
+  - name: "slaapkamer1 gemeten temperatuur"
+    unique_id: slaapkamer1_gemeten_temperatuur
+    state_class: "measurement"
+    device_class: "temperature"
+    unit_of_measurement: "°C"
+    state: "{{ state_attr('climate.radiator_slaapkamer', 'current_temperature') - (states('number.radiator_slaapkamer_local_temperature_calibration') | float) }}"
+    availability: true
+    icon: mdi:temperature-celsius
+  - name: "Waarde cv vraag slaapkamer 1"
+    unique_id: waarde_cv_vraag_slaapkamer_1
+    state: "{% if (is_state('binary_sensor.slaapkamer1_verzoek_verwarming', 'on')) %}{{ (max((state_attr('climate.radiator_slaapkamer', 'temperature') | float) - (states('sensor.slaapkamer1_gemiddelde_temperatuur') | float), 0) * (states('input_number.cv_factor_slaapkamer1_radiator') | float)) | round(1) }}{% else %}{{ 0 | float }}{% endif %}"
+    availability: true
+binary_sensor:
+  - name: "slaapkamer1 verzoek verwarming"
+    unique_id: slaapkamer1_verzoek_verwarming
+    state: "{{ is_state_attr('climate.radiator_slaapkamer', 'hvac_action', 'heating') }}"
+    availability: true
+
+# automation.yml:
+- id: slaapkamer1_radiator_temperatuur_correctie
+  alias: "Corrigeer de temperatuur meting van de thermostaatknop"
+  description: "Corigeer de offset van de temperatuur meting van de thermostaatknop aan de hand van de gemiddelde temperatuur"
+  initial_state: true
+  mode: restart
+  trigger:
+    - platform: state
+      entity_id:
+        - sensor.master_bed_room_gemiddelde_temperatuur
+  action:
+    - action: number.set_value
+      data:
+        value: "{{ ((states('sensor.master_bed_room_gemiddelde_temperatuur') | float) - (states('sensor.slaapkamer1_gemeten_temperatuur') | float)) | round(1) }}"
+      target:
+        entity_id: number.radiator_slaapkamer_local_temperature_calibration
+
