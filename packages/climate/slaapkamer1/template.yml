@@ -1,11 +1,9 @@
-template:
-  - use_blueprint:
-      path: template/climate_control.yaml
-      input:
-        ruimte_prefix: "slaapkamer1"
-        ruimte_naam_vriendelijk: "Master bed room"
-        temperatuur_sensoren:
-          - sensor.sensor_slaapkamer1_temperature
-        radiator_knoppen:
-          - climate.radiator_slaapkamer
-        verwarmings_factor: 1.0  # Alleen invullen als je wilt afwijken van de standaard 1.0
+- use_blueprint:
+    path: template/climate_control.yaml
+    input:
+      ruimte_prefix: "slaapkamer1"
+      ruimte_naam_vriendelijk: "Master bed room"
+      temperatuur_sensoren:
+        - sensor.sensor_slaapkamer1_temperature
+      radiator_knoppen:
+        - climate.radiator_slaapkamer
