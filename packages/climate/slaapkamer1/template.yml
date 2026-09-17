@@ -8,4 +8,4 @@ template:
           - sensor.sensor_slaapkamer1_temperature
         radiator_knoppen:
           - climate.radiator_slaapkamer
-        verwarmings_factor: 1.0 # Alleen invullen als je wilt afwijken van de standaard 1.0
+        verwarmings_factor: 1.0  # Alleen invullen als je wilt afwijken van de standaard 1.0

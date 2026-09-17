@@ -1,8 +1,8 @@
 - id: slaapkamer1_radiator_temperatuur_correctie
-    alias: "Slaapkamer 1 - Corrigeer Sonoff Kalibratie"
-    use_blueprint:
-      path: automation/climate_offset_correction.yaml
-      input:
-        gemiddelde_sensor: sensor.slaapkamer1_gemiddelde_temperatuur
-        radiator_knoppen:
-          - climate.radiator_slaapkamer
+  alias: "Slaapkamer 1 - Corrigeer Sonoff Kalibratie"
+  use_blueprint:
+    path: automation/climate_offset_correction.yaml
+    input:
+      gemiddelde_sensor: sensor.slaapkamer1_gemiddelde_temperatuur
+      radiator_knoppen:
+        - climate.radiator_slaapkamer
