@@ -1,6 +1,6 @@
 blueprint:
   name: Klimaat Kalibratie (Sonoff TRVZB)
-  description: Stuurt de juiste local_temperature_calibration naar Sonoff TRV's via Zigbee2MQTT.
+  description: Kalibreert (meerdere) Sonoff TRV's in één ruimte tegelijkertijd.
   domain: automation
   input:
     gemiddelde_sensor:
@@ -30,8 +30,9 @@ action:
           data:
             value: >
               {% set avg = states(trigger.entity_id) | float(none) %}
-              {% set cur = state_attr(repeat.item, 'current_temperature') %}
-              {% set cal_entity = 'number.' ~ repeat.item.split('.')[1] ~ '_local_temperature_calibration' %}
+              {% set r_entity = repeat.item %}
+              {% set cur = state_attr(r_entity, 'current_temperature') %}
+              {% set cal_entity = 'number.' ~ r_entity.split('.')[1] ~ '_local_temperature_calibration' %}
               {% set cal = states(cal_entity) | float(0) %}
 
               {% if avg is not none and cur is not none %}
