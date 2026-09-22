@@ -34,18 +34,18 @@ blueprint:
       selector:
         entity:
           multiple: false
-          domain: number
+          domain: input_number
 
 variables:
   pfx: !input ruimte_prefix
   friendly: !input ruimte_naam_vriendelijk
   temp_sensors: !input temperatuur_sensoren
   radiators: !input radiator_knoppen
-  verwarmingsfactor: !input verwarmingsfactor
+  factor: !input verwarmingsfactor
 
 sensor:
   # STAP 1 & 2: Gemiddelde temperatuur berekenen over ALLE sensoren en ALLE TRV's
-  - name: "{{ friendly }} gemiddelde temperatur"
+  - name: "{{ friendly }} gemiddelde temperatuur"
     unique_id: "gemiddelde_temperatuur_{{ pfx }}"
     state_class: "measurement"
     device_class: "temperature"
@@ -75,7 +75,7 @@ sensor:
       central_heating_request: >
         {% set avg_temp = states('sensor.' ~ pfx ~ '_gemiddelde_temperatuur') | float(none) %}
         {# Lees de dynamische slider uit die we hierboven hebben aangemaakt #}
-        {% set factor = states('number.' ~ verwarmingsfactor) | float(1.0) %}
+        {% set factor = states(factor) | float(1.0) %}
         {% set ns = namespace(max_vraag=0.0) %}
 
         {% if avg_temp is not none %}

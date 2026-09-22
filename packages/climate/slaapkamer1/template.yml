@@ -1,5 +1,5 @@
 - use_blueprint:
-    path: template/climate_control.yaml
+    path: climate/calculate_temperature.yaml
     input:
       ruimte_prefix: "slaapkamer1"
       ruimte_naam_vriendelijk: "Master bed room"
@@ -7,3 +7,4 @@
         - sensor.sensor_slaapkamer1_temperature
       radiator_knoppen:
         - climate.radiator_slaapkamer
+      verwarmingsfactor: input_number.cv_factor_slaapkamer1_radiator
