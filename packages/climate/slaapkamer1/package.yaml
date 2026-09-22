@@ -1,4 +1,4 @@
 package_klimaat_slaapkamer1:
-# input_number: !include input_number.yml
+  input_number: !include input_number.yml
   template: !include template.yml
   automation: !include automation.yml
