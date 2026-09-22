@@ -1,0 +1,2 @@
+package_light_zolder:
+  automation: !include automation.yml

@@ -1,0 +1,49 @@
+- id: licht_zolder_schakel_aan_alles
+  alias: "schakel lichten zolder aan"
+  description: "Schakel de lichten aan als deze uit staan"
+  initial_state: true
+  mode: restart
+  triggers:
+    - trigger: state
+      entity_id: switch.schakelaar_overloop_2
+  conditions:
+    - condition: switch.is_off
+      target:
+        entity_id:
+          - switch.schakelaar_zolder_1
+          - switch.schakelaar_zolder_2
+      options:
+        behavior: all
+  actions:
+    - action: switch.turn_on
+      metadata: {}
+      target:
+        entity_id:
+          - switch.schakelaar_zolder_1
+          - switch.schakelaar_zolder_2
+      data: {}
+
+- id: licht_zolder_schakel_uit_alles
+  alias: "schakel lichten zolder uit"
+  description: "Schakel de lichten uit als er minimaal één aan staat"
+  initial_state: true
+  mode: restart
+  triggers:
+    - trigger: state
+      entity_id: switch.schakelaar_overloop_2
+  conditions:
+    - condition: switch.is_on
+      target:
+        entity_id:
+          - switch.schakelaar_zolder_1
+          - switch.schakelaar_zolder_2
+      options:
+        behavior: any
+  actions:
+    - action: switch.turn_off
+      metadata: {}
+      target:
+        entity_id:
+          - switch.schakelaar_zolder_1
+          - switch.schakelaar_zolder_2
+      data: {}
