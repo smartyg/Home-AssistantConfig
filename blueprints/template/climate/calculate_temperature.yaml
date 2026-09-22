@@ -73,7 +73,7 @@ sensor:
       {% endif %}
     attributes:
       central_heating_request: >
-        {% set avg_temp = states('sensor.' ~ friendly ~ '_gemiddelde_temperatuur') | float(none) %}
+        {% set avg_temp = states('sensor.' ~ friendly | slugify ~ '_gemiddelde_temperatuur') | float(none) %}
         {# Lees de dynamische slider uit die we hierboven hebben aangemaakt #}
         {% set factor = states(factor) | float(1.0) %}
         {% set ns = namespace(max_vraag=0.0) %}
