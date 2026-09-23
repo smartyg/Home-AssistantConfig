@@ -1,0 +1,11 @@
+- use_blueprint:
+    path: climate/calculate_temperature.yaml
+    input:
+      ruimte_prefix: "hal"
+      ruimte_naam_vriendelijk: "Hal"
+      temperatuur_sensoren:
+        - sensor.beweging_hal_achter_temperature
+        - sensor.beweging_hal_voor_temperature
+        - sensor.beweging_hal_trap_temperature
+      radiator_knoppen:
+      verwarmingsfactor:

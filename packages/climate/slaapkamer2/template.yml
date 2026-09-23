@@ -1,18 +1,10 @@
-sensor:
-  - name: "slaapkamer2 gemeten temperatuur"
-    unique_id: slaapkamer2_gemeten_temperatuur
-    state_class: "measurement"
-    device_class: "temperature"
-    unit_of_measurement: "°C"
-    state: "{{ state_attr('climate.radiator_slaapkamer_2', 'current_temperature') - (states('number.radiator_slaapkamer_2_local_temperature_calibration') | float) }}"
-    availability: true
-    icon: mdi:temperature-celsius
-  - name: "Waarde cv vraag slaapkamer 2"
-    unique_id: waarde_cv_vraag_slaapkamer_2
-    state: "{% if (is_state('binary_sensor.slaapkamer2_verzoek_verwarming', 'on')) %}{{ (max((state_attr('climate.radiator_slaapkamer_2', 'temperature') | float) - (states('sensor.slaapkamer_2_gemiddelde_temperatuur') | float), 0) * (states('input_number.cv_factor_slaapkamer2_radiator') | float)) | round(1) }}{% else %}{{ 0 | float }}{% endif %}"
-    availability: true
-binary_sensor:
-  - name: "slaapkamer2 verzoek verwarming"
-    unique_id: slaapkamer2_verzoek_verwarming
-    state: "{{ is_state_attr('climate.radiator_slaapkamer_2', 'hvac_action', 'heating') }}"
-    availability: true
+- use_blueprint:
+    path: climate/calculate_temperature.yaml
+    input:
+      ruimte_prefix: "slaapkamer2"
+      ruimte_naam_vriendelijk: Slaapkamer 2"
+      temperatuur_sensoren:
+        - sensor.sensor_slaapkamer2_temperature
+      radiator_knoppen:
+        - climate.radiator_slaapkamer_2
+      verwarmingsfactor: input_number.cv_factor_slaapkamer2_radiator

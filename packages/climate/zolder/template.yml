@@ -1,18 +1,8 @@
-sensor:
-  - name: "zolder gemeten temperatuur"
-    unique_id: zolder_gemeten_temperatuur
-    state_class: "measurement"
-    device_class: "temperature"
-    unit_of_measurement: "°C"
-    state: "{{ state_attr('climate.radiator_zolder', 'current_temperature') - (states('number.radiator_zolder_local_temperature_calibration') | float) }}"
-    availability: true
-    icon: mdi:temperature-celsius
-  - name: "Waarde cv vraag zolder"
-    unique_id: waarde_cv_vraag_zolder
-    state: "{% if (is_state('binary_sensor.zolder_verzoek_verwarming', 'on')) %}{{ (max((state_attr('climate.radiator_zolder', 'temperature') | float) - (states('sensor.zolder_gemiddelde_temperatuur') | float), 0) * (states('input_number.cv_factor_zolder_radiator') | float)) | round(1) }}{% else %}{{ 0 | float }}{% endif %}"
-    availability: true
-binary_sensor:
-  - name: "zolder verzoek verwarming"
-    unique_id: zolder_verzoek_verwarming
-    state: "{{ is_state_attr('climate.radiator_zolder', 'hvac_action', 'heating') }}"
-    availability: true
+- use_blueprint:
+    path: climate/calculate_temperature.yaml
+    input:
+      ruimte_prefix: "zolder"
+      ruimte_naam_vriendelijk: "Zolder"
+      radiator_knoppen:
+        - climate.radiator_zolder
+      verwarmingsfactor: input_number.cv_factor_zolder_radiator

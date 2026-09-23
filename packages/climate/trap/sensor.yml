@@ -1,8 +1,0 @@
-- platform: min_max
-  unique_id: trap_gemiddelde_temperatuur
-  name: 'Trap gemiddelde temperatuur'
-  type: mean
-  round_digits: 1
-  entity_ids:
-    - sensor.beweging_hal_trap_temperature
-    - sensor.beweging_trap_temperature

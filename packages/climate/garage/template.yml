@@ -1,37 +1,9 @@
-sensor:
-  - name: "Garage gemeten temperatuur"
-    unique_id: garage_gemeten_temperatuur
-    state_class: "measurement"
-    device_class: "temperature"
-    unit_of_measurement: "°C"
-    state: >
-      {% set current = state_attr('climate.radiator_garage', 'current_temperature') %}
-      {% set calibration = states('number.radiator_garage_local_temperature_calibration') | float(0) %}
-      {% if current is not none %}
-        {{ (current - calibration) | round(1) }}
-      {% else %}
-        unknown
-      {% endif %}
-    availability: >
-      {{ state_attr('climate.radiator_garage', 'current_temperature') is not none
-         and has_value('number.radiator_garage_local_temperature_calibration') }}
-    icon: mdi:temperature-celsius
-  - name: "Waarde cv vraag garage"
-    unique_id: waarde_cv_vraag_garage
-    state: >
-      {% if is_state('binary_sensor.garage_verzoek_verwarming', 'on') %}
-        {% set target = state_attr('climate.radiator_garage', 'temperature') | float(0) %}
-        {% set avg = states('sensor.garage_gemiddelde_temperatuur') | float(0) %}
-        {% set factor = states('input_number.cv_factor_garage_radiator') | float(0) %}
-        {{ (max(target - avg, 0) * factor) | round(1) }}
-      {% else %}
-        {{ 0.0 }}
-      {% endif %}
-    availability: >
-      {{ has_value('binary_sensor.garage_verzoek_verwarming') }}
-binary_sensor:
-  - name: "Garage verzoek verwarming"
-    unique_id: garage_verzoek_verwarming
-    state: "{{ is_state_attr('climate.radiator_garage', 'hvac_action', 'heating') }}"
-    availability: >
-      {{ state_attr('climate.radiator_garage', 'hvac_action') is not none }}
+- use_blueprint:
+    path: climate/calculate_temperature.yaml
+    input:
+      ruimte_prefix: "garage"
+      ruimte_naam_vriendelijk: "Garage"
+      temperatuur_sensoren:
+      radiator_knoppen:
+        - climate.radiator_garage
+      verwarmingsfactor: input_number.cv_factor_garage_radiator

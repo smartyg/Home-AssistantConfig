@@ -1,18 +1,8 @@
-sensor:
-  - name: "Douche gemeten temperatuur"
-    unique_id: douche_gemeten_temperatuur
-    state_class: "measurement"
-    device_class: "temperature"
-    unit_of_measurement: "°C"
-    state: "{{ state_attr('climate.radiator_douche', 'current_temperature') - (states('number.radiator_douche_local_temperature_calibration') | float) }}"
-    availability: true
-    icon: mdi:temperature-celsius
-  - name: "Waarde cv vraag douche"
-    unique_id: waarde_cv_vraag_douche
-    state: "{% if (is_state('binary_sensor.douche_verzoek_verwarming', 'on')) %}{{ (max((state_attr('climate.radiator_douche', 'temperature') | float) - (states('sensor.douche_gemiddelde_temperatuur') | float), 0) * (states('input_number.cv_factor_douche_radiator') | float)) | round(1) }}{% else %}{{ 0 | float }}{% endif %}"
-    availability: true
-binary_sensor:
-  - name: "Douche verzoek verwarming"
-    unique_id: douche_verzoek_verwarming
-    state: "{{ is_state_attr('climate.radiator_douche', 'hvac_action', 'heating') }}"
-    availability: true
+- use_blueprint:
+  path: climate/calculate_temperature.yaml
+  input:
+    ruimte_prefix: "douche"
+    ruimte_naam_vriendelijk: "Douche"
+    radiator_knoppen:
+      - climate.radiator_douche
+    verwarmingsfactor: input_number.cv_factor_douche_radiator

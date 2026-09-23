@@ -1,3 +1,3 @@
 package_klimaat_trap:
-  sensor: !include sensor.yml
+  template: !include template.yml
   automation: !include automation.yml
