@@ -29,8 +29,12 @@ jobs:
           echo "home_latitude: 52.37" >> secrets.yaml
           echo "home_longitude: 4.89" >> secrets.yaml
 
+      - name: Create external directories for checker
+        run: sudo mkdir -p /data
+
       - name: Home Assistant Config Check
         uses: frenck/action-home-assistant@v1
         with:
           version: "stable"  # Je kunt hier ook een specifieke versie invullen, bijv. "2026.3.0"
+          ignore_custom_components: true # ignore missing pyscript intergration
 
