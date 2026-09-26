@@ -3,6 +3,7 @@
     input:
       ruimte_prefix: "zolder"
       ruimte_naam_vriendelijk: "Zolder"
+      temperatuur_sensoren:
       radiator_knoppen:
         - climate.radiator_zolder
       verwarmingsfactor: input_number.cv_factor_zolder_radiator
