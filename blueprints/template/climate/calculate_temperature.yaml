@@ -52,19 +52,22 @@ sensor:
     unit_of_measurement: "°C"
     state: >
       {% set ns = namespace(metingen=[]) %}
-      {% for s in temp_sensors if has_value(s) %}
-        {% set ns.metingen = ns.metingen + [states(s) | float] %}
-      {% endfor %}
+      {% if temp_sensors is iterable and temp_sensors is not string %}
+        {% for s in temp_sensors if has_value(s) %}
+          {% set ns.metingen = ns.metingen + [states(s) | float] %}
+        {% endfor %}
+      {% endif %}
 
-      {% for r in radiators if has_value(r) %}
-        {% set cur = state_attr(r, 'current_temperature') %}
-        {# Zigbee2MQTT specifieke transformatie naar de correcte number entiteit #}
-        {% set cal_entity = 'number.' ~ r.split('.')[1] ~ '_local_temperature_calibration' %}
-        {% set cal = states(cal_entity) | float(0) %}
-        {% if cur is not none %}
-          {% set ns.metingen = ns.metingen + [cur - cal] %}
-        {% endif %}
-      {% endfor %}
+      {% if radiators is iterable and radiators is not string %}
+        {% for r in radiators if has_value(r) %}
+          {% set cur = state_attr(r, 'current_temperature') %}
+          {% if cur is not none and '.' in r %}
+            {% set cal_entity = 'number.' ~ r.split('.')[1] ~ '_local_temperature_calibration' %}
+            {% set cal = states(cal_entity) | float(0) %}
+            {% set ns.metingen = ns.metingen + [cur - cal] %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
 
       {% if ns.metingen | length > 0 %}
         {{ (ns.metingen | sum / ns.metingen | length) | round(1) }}
@@ -74,27 +77,28 @@ sensor:
     attributes:
       central_heating_request: >
         {% set avg_temp = states('sensor.' ~ friendly | slugify ~ '_gemiddelde_temperatuur') | float(none) %}
-        {# Lees de dynamische slider uit die we hierboven hebben aangemaakt #}
-        {% set factor = states(factor) | float(1.0) %}
+        {% set factor_val = states(factor) | float(1.0) %}
         {% set ns = namespace(max_vraag=0.0) %}
 
-        {% if avg_temp is not none %}
+        {% if avg_temp is not none and radiators is iterable and radiators is not string %}
             {% for r in radiators if has_value(r) %}
-            {% if is_state_attr(r, 'hvac_action', 'heating') %}
-                {% set target = state_attr(r, 'temperature') | float(0) %}
-                {% set vraag = max(target - avg_temp, 0) * factor %}
-                {% if vraag > ns.max_vraag %}
-                {% set ns.max_vraag = vraag %}
-                {% endif %}
-            {% endif %}
+              {% if is_state_attr(r, 'hvac_action', 'heating') %}
+                  {% set target = state_attr(r, 'temperature') | float(0) %}
+                  {% set vraag = max(target - avg_temp, 0) * factor_val %}
+                  {% if vraag > ns.max_vraag %}
+                    {% set ns.max_vraag = vraag %}
+                  {% endif %}
+              {% endif %}
             {% endfor %}
         {% endif %}
         {{ ns.max_vraag | round(1) }}
       Radiator_open: >
         {% set ns = namespace(heating=false) %}
-        {% for r in radiators %}
-            {% if is_state_attr(r, 'hvac_action', 'heating') %}
-            {% set ns.heating = true %}
-            {% endif %}
-        {% endfor %}
+        {% if radiators is iterable and radiators is not string %}
+          {% for r in radiators if has_value(r) %}
+              {% if is_state_attr(r, 'hvac_action', 'heating') %}
+                {% set ns.heating = true %}
+              {% endif %}
+          {% endfor %}
+        {% endif %}
         {{ ns.heating }}
