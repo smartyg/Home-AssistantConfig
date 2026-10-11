@@ -81,17 +81,33 @@ sensor:
         {% set ns = namespace(max_vraag=0.0) %}
 
         {% if avg_temp is not none and radiators is iterable and radiators is not string %}
-            {% for r in radiators if has_value(r) %}
-              {% if is_state_attr(r, 'hvac_action', 'heating') %}
-                  {% set target = state_attr(r, 'temperature') | float(0) %}
-                  {% set vraag = max(target - avg_temp, 0) * factor_val %}
-                  {% if vraag > ns.max_vraag %}
-                    {% set ns.max_vraag = vraag %}
-                  {% endif %}
-              {% endif %}
-            {% endfor %}
+          {% for r in radiators if has_value(r) %}
+            {% if is_state_attr(r, 'hvac_action', 'heating') %}
+              {% set target = state_attr(r, 'temperature') | float(0) %}
+                {% set vraag = max(target - avg_temp, 0) * factor_val %}
+                {% if vraag > ns.max_vraag %}
+                  {% set ns.max_vraag = vraag %}
+                {% endif %}
+            {% endif %}
+          {% endfor %}
         {% endif %}
         {{ ns.max_vraag | round(1) }}
+      # request + dT * 2, at least +5C above set temperature.
+      min_water_temp_request: >
+        {% set ns = namespace(temp_request=0.0) %}
+        {% set avg_temp = states('sensor.' ~ friendly | slugify ~ '_gemiddelde_temperatuur') | float(none) %}
+        {% if avg_temp is not none and radiators is iterable and radiators is not string %}
+          {% for r in radiators if has_value(r) %}
+            {% if is_state_attr(r, 'hvac_action', 'heating') %}
+              {% set target = state_attr(r, 'temperature') | float(0) %}
+              {% set temp_request = target + max(max(target - avg_temp, 0) * 2, 5) %}
+              {% if temp_request > ns.temp_request %}
+                {% set ns.temp_request = vraag %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {{ ns.temp_request | round(1) }}
       Radiator_open: >
         {% set ns = namespace(heating=false) %}
         {% if radiators is iterable and radiators is not string %}
