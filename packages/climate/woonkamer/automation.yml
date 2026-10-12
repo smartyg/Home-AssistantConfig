@@ -23,9 +23,9 @@
       hours: /6
       minutes: 0
   conditions:
-    - condition: state
-      entity_id: fan.luchtreiniger_woonkamer
-      state: "off"
+    - condition: fan.is_off
+      target:
+        entity_id: fan.luchtreiniger_woonkamer
   actions:
     - action: fan.set_preset_mode
       target:
@@ -47,13 +47,12 @@
         seconds: 0
       below: 10
   conditions:
-    - condition: device
-      device_id: 04502c40c2b40f22bd13b8439f61a3f4
-      domain: fan
-      entity_id: 4ea9076320b8995e0744b4ca0ca7f5d9
-      type: is_on
+    - condition: fan.is_on
+      target:
+        entity_id: fan.luchtreiniger_woonkamer
   actions:
-    - type: turn_off
-      device_id: 04502c40c2b40f22bd13b8439f61a3f4
-      entity_id: 4ea9076320b8995e0744b4ca0ca7f5d9
-      domain: fan
+    - action: fan.turn_off
+      metadata: {}
+      data: {}
+      target:
+        entity_id: fan.luchtreiniger_woonkamer
