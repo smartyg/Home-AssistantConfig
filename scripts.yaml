@@ -3,7 +3,7 @@ onderhoud_cv_systeem:
   description: Laat het hele centrale verwarming systeem doorspoelen
   sequence:
     - action: climate.turn_off
-      metadata:
+      metadata: {}
       data: {}
       target:
         entity_id:
