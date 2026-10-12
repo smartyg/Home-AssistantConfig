@@ -4,13 +4,18 @@
   initial_state: true
   mode: restart
   trigger:
-    - id: schakelaar_keuken_1a_2a
+    - id: schakelaar_keuken_1a
       platform: state
       entity_id:
         - switch.schakelaar_keuken_1a
-        - switch.schakelaar_keuken_2a
+#        - switch.schakelaar_keuken_2a
       from: null
-      to: null
+    - id: schakelaar_keuken_2a
+      platform: device
+      domain: mqtt
+      device_id: a3211e177c8cdf97037fb3448b711422  # Schakelaar Keuken 2A
+      type: action
+      subtype: toggle
   condition:
     - condition: state
       entity_id: input_select.licht_keuken
@@ -26,13 +31,18 @@
   initial_state: true
   mode: restart
   trigger:
-    - id: schakelaar_keuken_1a_2a
+    - id: schakelaar_keuken_1a
       platform: state
       entity_id:
         - switch.schakelaar_keuken_1a
-        - switch.schakelaar_keuken_2a
+#        - switch.schakelaar_keuken_2a
       from: null
-      to: null
+    - id: schakelaar_keuken_2a
+      platform: device
+      domain: mqtt
+      device_id: a3211e177c8cdf97037fb3448b711422  # Schakelaar Keuken 2A
+      type: action
+      subtype: toggle
   condition:
     - alias: "if lights are not off"
       condition: not

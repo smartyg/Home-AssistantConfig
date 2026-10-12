@@ -5,10 +5,11 @@
   mode: restart
   trigger:
     - id: schakelaar_woonkamer
-      trigger: state
-      entity_id: switch.schakelaar_woonkamer
-      from: null
-      to: null
+      platform: device
+      domain: mqtt
+      device_id: a2a05b4122ed28c46b2edb2753a6c08d  # Schakelaar Woonkamer
+      type: action
+      subtype: toggle
   condition:
     - condition: state
       entity_id: input_select.licht_woonkamer
@@ -25,10 +26,11 @@
   mode: restart
   trigger:
     - id: schakelaar_woonkamer
-      trigger: state
-      entity_id: switch.schakelaar_woonkamer
-      from: null
-      to: null
+      platform: device
+      domain: mqtt
+      device_id: a2a05b4122ed28c46b2edb2753a6c08d  # Schakelaar Woonkamer
+      type: action
+      subtype: toggle
   condition:
     - alias: "if lights are not off"
       condition: not
