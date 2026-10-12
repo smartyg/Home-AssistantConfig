@@ -58,7 +58,7 @@ sensor:
         {% endfor %}
       {% endif %}
 
-      {% if radiators is iterable and radiators is not string %}
+      {% if radiators is not none and radiators is not string radiators is iterable  %}
         {% for r in radiators if has_value(r) %}
           {% set cur = state_attr(r, 'current_temperature') %}
           {% if cur is not none and '.' in r %}
@@ -110,7 +110,7 @@ sensor:
         {{ ns.temp_request | round(1) }}
       Radiator_open: >
         {% set ns = namespace(heating=false) %}
-        {% if radiators is not none and and radiators is not string radiators is iterable %}
+        {% if radiators is not none and radiators is not string and radiators is iterable %}
           {% for r in radiators if has_value(r) %}
               {% if is_state_attr(r, 'hvac_action', 'heating') %}
                 {% set ns.heating = true %}
