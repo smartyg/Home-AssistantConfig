@@ -29,10 +29,10 @@ jobs:
           echo "home_latitude: 52.37" >> secrets.yaml
           echo "home_longitude: 4.89" >> secrets.yaml
 
-      # Maak de data-map aan binnen de verborgen map die de Action gebruikt als /config
-      - name: Create data directory inside Action workspace
+      # Herschrijf de paden naar /config naar /github/workspace die in de validatie container gebruikt worden
+      - name: Herschrijf paden naar /config
         run: |
-          mkdir -p ../config/data
+          sed -i 's|/config|/github/workspace|g' configuration.yaml
 
       - name: Home Assistant Config Check
         uses: frenck/action-home-assistant@v1
