@@ -39,9 +39,8 @@ blueprint:
 variables:
   pfx: !input ruimte_prefix
   friendly: !input ruimte_naam_vriendelijk
-  # De default([]) zorgt ervoor dat temp_sensors altijd een lijst is, ook als deze niet is ingevuld
-  temp_sensors: !input temperatuur_sensoren | default([])
-  radiators: !input radiator_knoppen | default([])
+  temp_sensors: !input temperatuur_sensoren
+  radiators: !input radiator_knoppen
   factor: !input verwarmingsfactor
 
 sensor:
@@ -53,7 +52,7 @@ sensor:
     unit_of_measurement: "°C"
     state: >
       {% set ns = namespace(metingen=[]) %}
-      {% if temp_sensors is iterable and temp_sensors is not string %}
+      {% if temp_sensors is not none temp_sensors is not string and temp_sensors is iterable %}
         {% for s in temp_sensors if has_value(s) %}
           {% set ns.metingen = ns.metingen + [states(s) | float] %}
         {% endfor %}
@@ -111,7 +110,7 @@ sensor:
         {{ ns.temp_request | round(1) }}
       Radiator_open: >
         {% set ns = namespace(heating=false) %}
-        {% if radiators is iterable and radiators is not string %}
+        {% if radiators is not none and and radiators is not string radiators is iterable %}
           {% for r in radiators if has_value(r) %}
               {% if is_state_attr(r, 'hvac_action', 'heating') %}
                 {% set ns.heating = true %}
