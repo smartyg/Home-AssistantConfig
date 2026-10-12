@@ -172,19 +172,3 @@
       target:
         entity_id: input_datetime.cv_tijd_aan
   mode: single
-- id: '1755461599930'
-  alias: Test
-  description: ''
-  triggers:
-    - domain: mqtt
-      device_id: a3211e177c8cdf97037fb3448b711422
-      type: action
-      subtype: toggle
-      trigger: device
-  conditions: []
-  actions:
-    - device_id: c377ca141034cf30b014ea7246771d88
-      domain: light
-      entity_id: 446eace03fa9f6add24749593e175727
-      type: flash
-  mode: single

@@ -6,13 +6,12 @@ onderhoud_cv_systeem:
       metadata:
       data: {}
       target:
-      device_id:
-        - 7ccf4c319334b14933fcba7b116a0883
-        - 3b47fc92974b2b0724c7e81afa83a9f5
-        - 68d012e979106215d8c017a68947384d
-        - 57847a0906484516497582b697d76c7c
-        - f4fd51f00b045ec113e0f03b643bb451
-        - c15625a23a053ea2eb7111c7e0ae563e
+        entity_id:
+          - climate.radiator_slaapkamer
+          - climate.radiator_slaapkamer_2
+          - climate.radiator_douche
+          - climate.radiator_zolder
+          - climate.radiator_garage
     - delay:
         hours: 0
         minutes: 1
@@ -30,7 +29,7 @@ onderhoud_cv_systeem:
         temperature: 35
         hvac_mode: heat
       target:
-        device_id: 3b47fc92974b2b0724c7e81afa83a9f5
+        entity_id: climate.radiator_slaapkamer
     - delay:
         hours: 0
         minutes: 1
@@ -42,8 +41,7 @@ onderhoud_cv_systeem:
         temperature: 35
         hvac_mode: heat
       target:
-        device_id:
-          - f4fd51f00b045ec113e0f03b643bb451
+        entity_id: climate.radiator_slaapkamer_2
     - delay:
         hours: 0
         minutes: 2
@@ -55,8 +53,7 @@ onderhoud_cv_systeem:
         temperature: 35
         hvac_mode: heat
       target:
-        device_id:
-          - 57847a0906484516497582b697d76c7c
+        entity_id: climate.radiator_zolder
     - delay:
         hours: 0
         minutes: 2
@@ -66,15 +63,14 @@ onderhoud_cv_systeem:
       metadata: {}
       data: {}
       target:
-        device_id: 3b47fc92974b2b0724c7e81afa83a9f5
+        entity_id: climate.radiator_slaapkamer
     - action: climate.set_temperature
       metadata: {}
       data:
         temperature: 35
         hvac_mode: heat
       target:
-        device_id:
-    - c15625a23a053ea2eb7111c7e0ae563e
+        entity_id: climate.radiator_garage
     - delay:
         hours: 0
         minutes: 1
@@ -84,32 +80,7 @@ onderhoud_cv_systeem:
       metadata: {}
       data: {}
       target:
-        device_id:
-          - f4fd51f00b045ec113e0f03b643bb451
-    - delay:
-        hours: 0
-        minutes: 1
-        seconds: 5
-        milliseconds: 0
-    - action: climate.set_temperature
-      metadata: {}
-      data:
-        temperature: 35
-        hvac_mode: heat
-      target:
-        device_id:
-          - 68d012e979106215d8c017a68947384d
-    - delay:
-        hours: 0
-        minutes: 1
-        seconds: 5
-        milliseconds: 0
-    - action: climate.turn_off
-      metadata: {}
-      data: {}
-      target:
-        device_id:
-          - 57847a0906484516497582b697d76c7c
+        entity_id: climate.radiator_slaapkamer_2
     - delay:
         hours: 0
         minutes: 1
@@ -121,7 +92,7 @@ onderhoud_cv_systeem:
         temperature: 35
         hvac_mode: heat
       target:
-        device_id: 7ccf4c319334b14933fcba7b116a0883
+        entity_id: climate.radiator_douche
     - delay:
         hours: 0
         minutes: 1
@@ -131,8 +102,22 @@ onderhoud_cv_systeem:
       metadata: {}
       data: {}
       target:
-        device_id:
-          - c15625a23a053ea2eb7111c7e0ae563e
+        entity_id: climate.radiator_zolder
+    - delay:
+        hours: 0
+        minutes: 1
+        seconds: 5
+        milliseconds: 0
+    - delay:
+        hours: 0
+        minutes: 1
+        seconds: 5
+        milliseconds: 0
+    - action: climate.turn_off
+      metadata: {}
+      data: {}
+      target:
+        entity_id: climate.radiator_garage
     - delay:
         hours: 0
         minutes: 2
@@ -142,16 +127,9 @@ onderhoud_cv_systeem:
       metadata: {}
       data: {}
       target:
-        device_id:
-          - 68d012e979106215d8c017a68947384d
+        entity_id: climate.radiator_douche
     - delay:
         hours: 0
         minutes: 2
         seconds: 5
         milliseconds: 0
-    - action: climate.turn_off
-      metadata: {}
-      data: {}
-      target:
-        device_id:
-          - 7ccf4c319334b14933fcba7b116a0883
