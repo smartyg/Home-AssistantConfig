@@ -1,9 +1,0 @@
-- platform: min_max
-  unique_id: hal_gemiddelde_temperatuur
-  name: 'Hal gemiddelde temperatuur'
-  type: mean
-  round_digits: 1
-  entity_ids:
-    - sensor.beweging_hal_achter_temperature
-    - sensor.beweging_hal_voor_temperature
-    - sensor.beweging_hal_trap_temperature
