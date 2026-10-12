@@ -53,7 +53,7 @@ sensor:
 
       {% if radiators is not none and radiators is not string and radiators is iterable  %}
         {% for r in radiators if has_value(r) %}
-          {% set cur = state_attr(r, 'current_temperature') %}
+          {% set cur = state_attr(r, 'current_temperature') | float(none) %}
           {% if cur is not none and '.' in r %}
             {% set cal_entity = 'number.' ~ r.split('.')[1] ~ '_local_temperature_calibration' %}
             {% set cal = states(cal_entity) | float(0) %}
@@ -69,7 +69,24 @@ sensor:
       {% endif %}
     attributes:
       central_heating_request: >
-        {% set avg_temp = states('sensor.' ~ friendly | slugify ~ '_gemiddelde_temperatuur') | float(none) %}
+        {# 1. Bereken eerst lokaal de avg_temp opnieuw om herstart-loops te voorkomen #}
+        {% set ns_temp = namespace(metingen=[]) %}
+        {% if temp_sensors is not none and temp_sensors is not string and temp_sensors is iterable %}
+          {% for s in temp_sensors if has_value(s) %}{% set ns_temp.metingen = ns_temp.metingen + [states(s) | float] %}{% endfor %}
+        {% endif %}
+        {% if radiators is not none and radiators is not string and radiators is iterable  %}
+          {% for r in radiators if has_value(r) %}
+            {% set cur = state_attr(r, 'current_temperature') | float(none) %}
+            {% if cur is not none and '.' in r %}
+              {% set cal_entity = 'number.' ~ r.split('.')[1] ~ '_local_temperature_calibration' %}
+              {% set cal = states(cal_entity) | float(0) %}
+              {% set ns_temp.metingen = ns_temp.metingen + [cur - cal] %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% set avg_temp = (ns_temp.metingen | sum / ns_temp.metingen | length) | round(1) if ns_temp.metingen | length > 0 else none %}
+
+        {# 2. Bereken de CV Vraag #}
         {% set factor_val = states(factor) | float(1.0) %}
         {% set ns = namespace(max_vraag=0.0) %}
 
@@ -85,10 +102,27 @@ sensor:
           {% endfor %}
         {% endif %}
         {{ ns.max_vraag | round(1) }}
-      # request + dT * 2, at least +5C above set temperature.
+
       min_water_temp_request: >
+        {# 1. Bereken exact dezelfde avg_temp lokaal #}
+        {% set ns_temp = namespace(metingen=[]) %}
+        {% if temp_sensors is not none and temp_sensors is not string and temp_sensors is iterable %}
+          {% for s in temp_sensors if has_value(s) %}{% set ns_temp.metingen = ns_temp.metingen + [states(s) | float] %}{% endfor %}
+        {% endif %}
+        {% if radiators is not none and radiators is not string and radiators is iterable  %}
+          {% for r in radiators if has_value(r) %}
+            {% set cur = state_attr(r, 'current_temperature') | float(none) %}
+            {% if cur is not none and '.' in r %}
+              {% set cal_entity = 'number.' ~ r.split('.')[1] ~ '_local_temperature_calibration' %}
+              {% set cal = states(cal_entity) | float(0) %}
+              {% set ns_temp.metingen = ns_temp.metingen + [cur - cal] %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% set avg_temp = (ns_temp.metingen | sum / ns_temp.metingen | length) | round(1) if ns_temp.metingen | length > 0 else none %}
+
+        {# 2. Bereken de minimale watertemperatuur #}
         {% set ns = namespace(temp_request=0.0) %}
-        {% set avg_temp = states('sensor.' ~ friendly | slugify ~ '_gemiddelde_temperatuur') | float(none) %}
         {% if avg_temp is not none and radiators is not none and radiators is not string and radiators is iterable %}
           {% for r in radiators if has_value(r) %}
             {% if is_state_attr(r, 'hvac_action', 'heating') %}
@@ -101,6 +135,7 @@ sensor:
           {% endfor %}
         {% endif %}
         {{ ns.temp_request | round(1) }}
+
       Radiator_open: >
         {% set ns = namespace(heating=false) %}
         {% if radiators is not none and radiators is not string and radiators is iterable %}
