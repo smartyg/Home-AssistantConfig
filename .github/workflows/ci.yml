@@ -29,8 +29,10 @@ jobs:
           echo "home_latitude: 52.37" >> secrets.yaml
           echo "home_longitude: 4.89" >> secrets.yaml
 
-      - name: Create external directories for checker
-        run: sudo mkdir -p /data
+      # Herschrijf de paden naar /config naar /github/workspace die in de validatie container gebruikt worden
+      - name: Herschrijf paden naar /config
+        run: |
+          sed -i 's|/config|/github/workspace|g' configuration.yaml
 
       - name: Home Assistant Config Check
         uses: frenck/action-home-assistant@v1
