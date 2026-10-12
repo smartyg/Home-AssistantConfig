@@ -1,7 +1,7 @@
-- use_blueprint:
+- unique_id: "gemiddelde_temperatuur_douche"
+  use_blueprint:
     path: climate/calculate_temperature.yaml
     input:
-      ruimte_prefix: "douche"
       ruimte_naam_vriendelijk: "Douche"
       radiator_knoppen:
         - climate.radiator_douche

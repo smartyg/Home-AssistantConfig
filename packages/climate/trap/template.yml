@@ -1,7 +1,7 @@
-- use_blueprint:
+- unique_id: "gemiddelde_temperatuur_trap"
+  use_blueprint:
     path: climate/calculate_temperature.yaml
     input:
-      ruimte_prefix: "trap"
       ruimte_naam_vriendelijk: "Trap"
       temperatuur_sensoren:
         - sensor.beweging_hal_trap_temperature

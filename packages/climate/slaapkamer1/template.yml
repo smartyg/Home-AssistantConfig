@@ -1,7 +1,7 @@
-- use_blueprint:
+- unique_id: "gemiddelde_temperatuur_slaapkamer1"
+  use_blueprint:
     path: climate/calculate_temperature.yaml
     input:
-      ruimte_prefix: "slaapkamer1"
       ruimte_naam_vriendelijk: "Master bed room"
       temperatuur_sensoren:
         - sensor.sensor_slaapkamer1_temperature

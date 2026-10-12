@@ -1,7 +1,7 @@
-- use_blueprint:
+- unique_id: "gemiddelde_temperatuur_garage"
+  use_blueprint:
     path: climate/calculate_temperature.yaml
     input:
-      ruimte_prefix: "garage"
       ruimte_naam_vriendelijk: "Garage"
       radiator_knoppen:
         - climate.radiator_garage

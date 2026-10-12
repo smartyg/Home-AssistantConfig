@@ -3,11 +3,6 @@ blueprint:
   description: Bereken de gemiddelde temperatuur en de CV-vraag voor een ruimte.
   domain: template
   input:
-    ruimte_prefix:
-      name: Ruimte Prefix
-      description: "Bijv. 'slaapkamer1' (kleine letters, geen spaties)"
-      selector:
-        text:
     ruimte_naam_vriendelijk:
       name: Vriendelijke Naam
       description: "Bijv. 'Master bed room'"
@@ -37,7 +32,6 @@ blueprint:
           domain: input_number
 
 variables:
-  pfx: !input ruimte_prefix
   friendly: !input ruimte_naam_vriendelijk
   temp_sensors: !input temperatuur_sensoren
   radiators: !input radiator_knoppen
@@ -46,7 +40,6 @@ variables:
 sensor:
   # STAP 1 & 2: Gemiddelde temperatuur berekenen over ALLE sensoren en ALLE TRV's
   - name: "{{ friendly }} gemiddelde temperatuur"
-    unique_id: "gemiddelde_temperatuur_{{ pfx }}"
     state_class: "measurement"
     device_class: "temperature"
     unit_of_measurement: "°C"
