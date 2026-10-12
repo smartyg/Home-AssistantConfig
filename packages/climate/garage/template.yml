@@ -3,7 +3,6 @@
     input:
       ruimte_prefix: "garage"
       ruimte_naam_vriendelijk: "Garage"
-      temperatuur_sensoren:
       radiator_knoppen:
         - climate.radiator_garage
       verwarmingsfactor: input_number.cv_factor_garage_radiator

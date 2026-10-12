@@ -1,8 +1,8 @@
 - use_blueprint:
-  path: climate/calculate_temperature.yaml
-  input:
-    ruimte_prefix: "douche"
-    ruimte_naam_vriendelijk: "Douche"
-    radiator_knoppen:
-      - climate.radiator_douche
-    verwarmingsfactor: input_number.cv_factor_douche_radiator
+    path: climate/calculate_temperature.yaml
+    input:
+      ruimte_prefix: "douche"
+      ruimte_naam_vriendelijk: "Douche"
+      radiator_knoppen:
+        - climate.radiator_douche
+      verwarmingsfactor: input_number.cv_factor_douche_radiator
