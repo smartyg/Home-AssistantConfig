@@ -89,4 +89,4 @@
     - action: opentherm_gw.set_central_heating_ovrd
       data:
         gateway_id: otgw
-        ch_override: "{{ states('binary_sensor.de_cv_wordt_gevraagd_aan_te_slaan') }}"
+        ch_override: "{{ states('input_number.boiler_cv_water_temperatuur') | float(0) }}"
