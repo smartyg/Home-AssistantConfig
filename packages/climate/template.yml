@@ -3,11 +3,11 @@ sensor:
     unique_id: totale_waarde_cv_vraag
     state: >
       {{ states('sensor.waarde_cv_vraag_woonkamer_vloerverwarming') | float(0) +
-         states('sensor.waarde_cv_vraag_slaapkamer_1') | float(0) +
-         states('sensor.waarde_cv_vraag_slaapkamer_2') | float(0) +
-         states('sensor.waarde_cv_vraag_douche') | float(0) +
-         states('sensor.waarde_cv_vraag_zolder') | float(0) +
-         states('sensor.waarde_cv_vraag_garage') | float(0) }}
+         state_attr('sensor.master_bed_room_gemiddelde_temperatuur', 'central_heating_request') | float(0) +
+         state_attr('sensor.slaapkamer2_gemiddelde_temperatuur', 'central_heating_request') | float(0) +
+         state_attr('sensor.douche_gemiddelde_temperatuur', 'central_heating_request') | float(0) +
+         state_attr('sensor.zolder_gemiddelde_temperatuur', 'central_heating_request') | float(0) +
+         state_attr('sensor.garage_gemiddelde_temperatuur', 'central_heating_request') | float(0) }}
     availability: true
 
 binary_sensor:
