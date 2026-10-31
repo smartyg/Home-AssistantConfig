@@ -1,0 +1,6 @@
+- id: 'licht_hal_uit'
+  name: "Hal - licht uit"
+  icon: mdi:lightbulb-off
+  entities:
+    input_select.licht_hal: uit
+    switch.schakelaar_hal_1b: off

@@ -4,8 +4,8 @@
 # RS230C : color_temp = (c - 1801) / (6535 - 1801) * (555 - 153) + 153
 # RS230C : color_temp = (c - 1801) * 0.0849 + 153
 
-- id: 'scene_keuken_sfeer_licht'
-  name: Sfeer licht keuken
+- id: 'licht_keuken_sfeer'
+  name: "Keuken - sfeer licht"
   icon: mdi:lightbulb-on-40
   entities:
     input_select.licht_keuken: sfeer

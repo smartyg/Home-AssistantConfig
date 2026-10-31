@@ -1,0 +1,6 @@
+- id: 'licht_overloop_vol'
+  name: "Overloop - vol licht"
+  icon: mdi:lightbulb-on-90
+  entities:
+    input_select.licht_overloop: aan
+    switch.schakelaar_overloop: on

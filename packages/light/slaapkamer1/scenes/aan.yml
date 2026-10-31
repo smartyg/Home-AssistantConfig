@@ -1,0 +1,6 @@
+- id: 'licht_slaapkamer1_aan'
+  name: "Master bedroom - licht aan"
+  icon: mdi:lightbulb-on-90
+  entities:
+    input_select.licht_slaapkamer1: aan
+    switch.schakelaar_slaapkamer_boven_bed: on

@@ -23,7 +23,7 @@
   action:
     - action: scene.turn_on
       target:
-        entity_id: scene.dim_licht
+        entity_id: scene.licht_keuken_dim
 
 - id: licht_keuken_schakel_uit
   alias: "schakel lichten keuken uit"
@@ -53,7 +53,7 @@
   action:
     - action: scene.turn_on
       target:
-        entity_id: scene.licht_uit
+        entity_id: scene.licht_keuken_uit
 
 - id: licht_keuken_schakel_aan_koken
   alias: "schakel lichten in de keuken naar kook stand"
@@ -76,7 +76,7 @@
   action:
     - action: scene.turn_on
       target:
-        entity_id: scene.koken_licht
+        entity_id: scene.licht_keuken_koken
 
 - id: licht_keuken_schakel_aan_dim_2
   alias: "schakel lichten in de keuken naar dim stand"
@@ -96,4 +96,4 @@
   action:
     - action: scene.turn_on
       target:
-        entity_id: scene.dim_licht
+        entity_id: scene.licht_keuken_dim

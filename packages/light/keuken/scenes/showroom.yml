@@ -4,8 +4,8 @@
 # RS230C : color_temp = (c - 1801) / (6535 - 1801) * (555 - 153) + 153
 # RS230C : color_temp = (c - 1801) * 0.0849 + 153
 
-- id: 'scene_keuken_showroom'
-  name: Showroom licht keuken
+- id: 'licht_keuken_showroom'
+  name: "Keuken - showroom licht"
   icon: mdi:lightbulb-on-80
   entities:
     input_select.licht_keuken: showroom

@@ -17,7 +17,7 @@
   action:
     - action: scene.turn_on
       target:
-        entity_id: scene.vol_licht_eetkamer
+        entity_id: scene.licht_eetkamer_vol
 
 - id: licht_eetkamer_schakel_uit
   alias: "schakel lichten eetkamer uit"
@@ -41,4 +41,4 @@
   action:
     - action: scene.turn_on
       target:
-        entity_id: scene.licht_uit_eetkamer
+        entity_id: scene.licht_eetkamer_uit

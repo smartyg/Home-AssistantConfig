@@ -1,0 +1,6 @@
+- id: 'licht_hal_vol'
+  name: "Hal - vol licht"
+  icon: mdi:lightbulb-on-90
+  entities:
+    input_select.licht_hal: vol
+    switch.schakelaar_hal_1b: on
