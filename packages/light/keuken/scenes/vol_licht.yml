@@ -5,7 +5,7 @@
 # RS230C : color_temp = (c - 1801) * 0.0849 + 153
 
 - id: 'licht_keuken_vol'
-  name: "Keukenb - vol licht"
+  name: "Keuken - vol licht"
   icon: mdi:lightbulb-on-90
   entities:
     input_select.licht_keuken: vol
