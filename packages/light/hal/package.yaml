@@ -1,4 +1,6 @@
 package_light_hal:
   automation: !include automation.yml
   sensor: !include sensor.yml
-  scene: !include scene.yml
+  input_select: !include input_select.yml
+  scene licht_hal_aan: !include scenes/aan.yml
+  scene licht_hal_uit: !include scenes/uit.yml

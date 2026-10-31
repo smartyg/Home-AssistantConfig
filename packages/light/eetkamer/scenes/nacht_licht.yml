@@ -1,5 +1,5 @@
-- id: 'scene_eetkamer_nacht_licht'
-  name: Nacht licht eetkamer
+- id: 'licht_eetkamer_nacht'
+  name: "Eetkamer - nacht licht"
   icon: mdi:lightbulb-on-10
   entities:
     input_select.licht_eetkamer: nacht

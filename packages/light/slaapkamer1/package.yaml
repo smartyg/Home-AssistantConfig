@@ -1,0 +1,5 @@
+package_light_hal:
+  automation: !include automation.yml
+  input_select: !include input_select.yml
+  scene licht_slaapkamer1_aan: !include scenes/aan.yml
+  scene licht_slaapkamer1_uit: !include scenes/uit.yml

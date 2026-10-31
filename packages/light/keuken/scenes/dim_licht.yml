@@ -4,8 +4,8 @@
 # RS230C : color_temp = (c - 1801) / (6535 - 1801) * (555 - 153) + 153
 # RS230C : color_temp = (c - 1801) * 0.0849 + 153
 
-- id: 'scene_keuken_dim_licht'
-  name: Dim licht keuken
+- id: 'licht_keuken_dim'
+  name: "Keuken - dim licht"
   icon: mdi:lightbulb-on-50
   entities:
     input_select.licht_keuken: dim

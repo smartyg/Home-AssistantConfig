@@ -1,0 +1,7 @@
+licht_hal:
+  name: 'Status lichten in de hal'
+  options:
+    - aan
+    - uit
+  initial: uit
+  icon: mdi:lightbulb-group

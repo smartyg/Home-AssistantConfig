@@ -1,5 +1,5 @@
-- id: 'scene_eetkamer_uit'
-  name: Licht uit eetkamer
+- id: 'licht_eetkamer_uit'
+  name: "Eetkamer - licht uit"
   icon: mdi:lightbulb-off
   entities:
     input_select.licht_eetkamer: uit

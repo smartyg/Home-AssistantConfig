@@ -1,0 +1,6 @@
+- id: 'licht_overloop_uit'
+  name: "Overloop - licht uit"
+  icon: mdi:lightbulb-off
+  entities:
+    input_select.licht_overloop: uit
+    switch.schakelaar_overloop: off

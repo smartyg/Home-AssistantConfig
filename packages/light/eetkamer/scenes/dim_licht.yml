@@ -1,5 +1,5 @@
-- id: 'scene_eetkamer_dim_licht'
-  name: Dim licht eetkamer
+- id: 'licht_eetkamer_dim'
+  name: "Eetkamer - dim licht"
   icon: mdi:lightbulb-on-70
   entities:
     input_select.licht_keuken: dim

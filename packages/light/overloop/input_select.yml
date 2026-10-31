@@ -1,0 +1,7 @@
+licht_hal:
+  name: 'Status lichten op de overloop'
+  options:
+    - aan
+    - uit
+  initial: uit
+  icon: mdi:lightbulb-group
